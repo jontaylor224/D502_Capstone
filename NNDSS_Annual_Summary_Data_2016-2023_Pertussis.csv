@@ -1,0 +1,600 @@
+"Notes","Disease","Disease Code","Year","Year Code","Regions/States","Regions/States Code",Case Count,Population for Published Rate,Published Rate
+,"Pertussis","10190","2016","2016","United States","U.S.",17972,323127513,5.56
+,"Pertussis","10190","2016","2016","New England","REGION1",998,14735525,6.77
+,"Pertussis","10190","2016","2016","Connecticut","09",96,3576452,2.68
+,"Pertussis","10190","2016","2016","Maine","23",259,1331479,19.45
+,"Pertussis","10190","2016","2016","Massachusetts","25",202,6811779,2.97
+,"Pertussis","10190","2016","2016","New Hampshire","33",60,1334795,4.50
+,"Pertussis","10190","2016","2016","Rhode Island","44",91,1056426,8.61
+,"Pertussis","10190","2016","2016","Vermont","50",290,624594,46.43
+,"Pertussis","10190","2016","2016","Middle Atlantic","REGION2",3124,41473985,7.53
+,"Pertussis","10190","2016","2016","New Jersey","34",566,8944469,6.33
+,"Pertussis","10190","2016","2016","New York (excluding New York City)","36888",663,11207616,5.92
+,"Pertussis","10190","2016","2016","New York City","75772",304,8537673,3.56
+,"Pertussis","10190","2016","2016","Pennsylvania","42",1591,12784227,12.45
+,"Pertussis","10190","2016","2016","East North Central","REGION3",4072,46755973,8.71
+,"Pertussis","10190","2016","2016","Illinois","17",1034,12801539,8.08
+,"Pertussis","10190","2016","2016","Indiana","18",178,6633053,2.68
+,"Pertussis","10190","2016","2016","Michigan","26",416,9928300,4.19
+,"Pertussis","10190","2016","2016","Ohio","39",1001,11614373,8.62
+,"Pertussis","10190","2016","2016","Wisconsin","55",1443,5778708,24.97
+,"Pertussis","10190","2016","2016","West North Central","REGION4",1904,21185456,8.99
+,"Pertussis","10190","2016","2016","Iowa","19",161,3134693,5.14
+,"Pertussis","10190","2016","2016","Kansas","20",161,2907289,5.54
+,"Pertussis","10190","2016","2016","Minnesota","27",1015,5519952,18.39
+,"Pertussis","10190","2016","2016","Missouri","29",357,6093000,5.86
+,"Pertussis","10190","2016","2016","Nebraska","31",152,1907116,7.97
+,"Pertussis","10190","2016","2016","North Dakota","38",44,757952,5.81
+,"Pertussis","10190","2016","2016","South Dakota","46",14,865454,1.62
+,"Pertussis","10190","2016","2016","South Atlantic","REGION5",1364,63923309,2.13
+,"Pertussis","10190","2016","2016","Delaware","10",15,952065,1.58
+,"Pertussis","10190","2016","2016","District of Columbia","11",11,681170,1.61
+,"Pertussis","10190","2016","2016","Florida","12",334,20612439,1.62
+,"Pertussis","10190","2016","2016","Georgia","13",190,10310371,1.84
+,"Pertussis","10190","2016","2016","Maryland","24",135,6016447,2.24
+,"Pertussis","10190","2016","2016","North Carolina","37",296,10146788,2.92
+,"Pertussis","10190","2016","2016","South Carolina","45",132,4961119,2.66
+,"Pertussis","10190","2016","2016","Virginia","51",225,8411808,2.67
+,"Pertussis","10190","2016","2016","West Virginia","54",26,1831102,1.42
+,"Pertussis","10190","2016","2016","East South Central","REGION6",785,18940194,4.14
+,"Pertussis","10190","2016","2016","Alabama","01",176,4863300,3.62
+,"Pertussis","10190","2016","2016","Kentucky","21",463,4436974,10.44
+,"Pertussis","10190","2016","2016","Mississippi","28",6,2988726,0.20
+,"Pertussis","10190","2016","2016","Tennessee","47",140,6651194,2.10
+,"Pertussis","10190","2016","2016","West South Central","REGION7",1604,39456071,4.07
+,"Pertussis","10190","2016","2016","Arkansas","05",69,2988248,2.31
+,"Pertussis","10190","2016","2016","Louisiana","22",65,4681666,1.39
+,"Pertussis","10190","2016","2016","Oklahoma","40",184,3923561,4.69
+,"Pertussis","10190","2016","2016","Texas","48",1286,27862596,4.62
+,"Pertussis","10190","2016","2016","Mountain","REGION8",1589,23855067,6.66
+,"Pertussis","10190","2016","2016","Arizona","04",287,6931071,4.14
+,"Pertussis","10190","2016","2016","Colorado","08",716,5540545,12.92
+,"Pertussis","10190","2016","2016","Idaho","16",83,1683140,4.93
+,"Pertussis","10190","2016","2016","Montana","30",21,1042520,2.01
+,"Pertussis","10190","2016","2016","Nevada","32",36,2940058,1.22
+,"Pertussis","10190","2016","2016","New Mexico","35",160,2081015,7.69
+,"Pertussis","10190","2016","2016","Utah","49",265,3051217,8.69
+,"Pertussis","10190","2016","2016","Wyoming","56",21,585501,3.59
+,"Pertussis","10190","2016","2016","Pacific","REGION9",2532,52801933,4.80
+,"Pertussis","10190","2016","2016","Alaska","02",158,741894,21.30
+,"Pertussis","10190","2016","2016","California","06",1509,39250017,3.84
+,"Pertussis","10190","2016","2016","Hawaii","15",55,1428557,3.85
+,"Pertussis","10190","2016","2016","Oregon","41",192,4093465,4.69
+,"Pertussis","10190","2016","2016","Washington","53",618,7288000,8.48
+,"Pertussis","10190","2016","2016","Territories","REGION10",15,Not Available,Not Applicable
+,"Pertussis","10190","2016","2016","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2016","2016","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2016","2016","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2016","2016","Puerto Rico","72",15,Not Available,Not Applicable
+,"Pertussis","10190","2016","2016","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2016","2016","Non-U.S. Residents","REGION11",Not Available,Not Available,Not Available
+,"Pertussis","10190","2017","2017","United States","U.S.",18975,325719178,5.83
+,"Pertussis","10190","2017","2017","New England","REGION1",1161,14810001,7.84
+,"Pertussis","10190","2017","2017","Connecticut","09",76,3588184,2.12
+,"Pertussis","10190","2017","2017","Maine","23",410,1335907,30.69
+,"Pertussis","10190","2017","2017","Massachusetts","25",408,6859819,5.95
+,"Pertussis","10190","2017","2017","New Hampshire","33",75,1342795,5.59
+,"Pertussis","10190","2017","2017","Rhode Island","44",84,1059639,7.93
+,"Pertussis","10190","2017","2017","Vermont","50",108,623657,17.32
+,"Pertussis","10190","2017","2017","Middle Atlantic","REGION2",2141,41660580,5.14
+,"Pertussis","10190","2017","2017","New Jersey","34",465,9005644,5.16
+,"Pertussis","10190","2017","2017","New York (excluding New York City)","36888",543,11226701,4.84
+,"Pertussis","10190","2017","2017","New York City","75772",148,8622698,1.72
+,"Pertussis","10190","2017","2017","Pennsylvania","42",985,12805537,7.69
+,"Pertussis","10190","2017","2017","East North Central","REGION3",3434,46885244,7.32
+,"Pertussis","10190","2017","2017","Illinois","17",689,12802023,5.38
+,"Pertussis","10190","2017","2017","Indiana","18",382,6666818,5.73
+,"Pertussis","10190","2017","2017","Michigan","26",744,9962311,7.47
+,"Pertussis","10190","2017","2017","Ohio","39",865,11658609,7.42
+,"Pertussis","10190","2017","2017","Wisconsin","55",754,5795483,13.01
+,"Pertussis","10190","2017","2017","West North Central","REGION4",1663,21294107,7.81
+,"Pertussis","10190","2017","2017","Iowa","19",161,3145711,5.12
+,"Pertussis","10190","2017","2017","Kansas","20",203,2913123,6.97
+,"Pertussis","10190","2017","2017","Minnesota","27",730,5576606,13.09
+,"Pertussis","10190","2017","2017","Missouri","29",412,6113532,6.74
+,"Pertussis","10190","2017","2017","Nebraska","31",98,1920076,5.10
+,"Pertussis","10190","2017","2017","North Dakota","38",50,755393,6.62
+,"Pertussis","10190","2017","2017","South Dakota","46",9,869666,1.03
+,"Pertussis","10190","2017","2017","South Atlantic","REGION5",1657,64705532,2.56
+,"Pertussis","10190","2017","2017","Delaware","10",9,961939,0.94
+,"Pertussis","10190","2017","2017","District of Columbia","11",22,693972,3.17
+,"Pertussis","10190","2017","2017","Florida","12",358,20984400,1.71
+,"Pertussis","10190","2017","2017","Georgia","13",234,10429379,2.24
+,"Pertussis","10190","2017","2017","Maryland","24",107,6052177,1.77
+,"Pertussis","10190","2017","2017","North Carolina","37",427,10273419,4.16
+,"Pertussis","10190","2017","2017","South Carolina","45",191,5024369,3.80
+,"Pertussis","10190","2017","2017","Virginia","51",296,8470020,3.49
+,"Pertussis","10190","2017","2017","West Virginia","54",13,1815857,0.72
+,"Pertussis","10190","2017","2017","East South Central","REGION6",937,19029020,4.92
+,"Pertussis","10190","2017","2017","Alabama","01",231,4874747,4.74
+,"Pertussis","10190","2017","2017","Kentucky","21",449,4454189,10.08
+,"Pertussis","10190","2017","2017","Mississippi","28",35,2984100,1.17
+,"Pertussis","10190","2017","2017","Tennessee","47",222,6715984,3.31
+,"Pertussis","10190","2017","2017","West South Central","REGION7",2284,39924072,5.72
+,"Pertussis","10190","2017","2017","Arkansas","05",225,3004279,7.49
+,"Pertussis","10190","2017","2017","Louisiana","22",87,4684333,1.86
+,"Pertussis","10190","2017","2017","Oklahoma","40",207,3930864,5.27
+,"Pertussis","10190","2017","2017","Texas","48",1765,28304596,6.24
+,"Pertussis","10190","2017","2017","Mountain","REGION8",2039,24158117,8.44
+,"Pertussis","10190","2017","2017","Arizona","04",420,7016270,5.99
+,"Pertussis","10190","2017","2017","Colorado","08",671,5607154,11.97
+,"Pertussis","10190","2017","2017","Idaho","16",89,1716943,5.18
+,"Pertussis","10190","2017","2017","Montana","30",106,1050493,10.09
+,"Pertussis","10190","2017","2017","Nevada","32",92,2998039,3.07
+,"Pertussis","10190","2017","2017","New Mexico","35",197,2088070,9.43
+,"Pertussis","10190","2017","2017","Utah","49",446,3101833,14.38
+,"Pertussis","10190","2017","2017","Wyoming","56",18,579315,3.11
+,"Pertussis","10190","2017","2017","Pacific","REGION9",3659,53252505,6.87
+,"Pertussis","10190","2017","2017","Alaska","02",59,739795,7.98
+,"Pertussis","10190","2017","2017","California","06",2576,39536653,6.52
+,"Pertussis","10190","2017","2017","Hawaii","15",39,1427538,2.73
+,"Pertussis","10190","2017","2017","Oregon","41",245,4142776,5.91
+,"Pertussis","10190","2017","2017","Washington","53",740,7405743,9.99
+,"Pertussis","10190","2017","2017","Territories","REGION10",14,Not Available,Not Applicable
+,"Pertussis","10190","2017","2017","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2017","2017","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2017","2017","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2017","2017","Puerto Rico","72",14,Not Available,Not Applicable
+,"Pertussis","10190","2017","2017","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2017","2017","Non-U.S. Residents","REGION11",Not Available,Not Available,Not Available
+,"Pertussis","10190","2018","2018","United States","U.S.",15609,327167434,4.77
+,"Pertussis","10190","2018","2018","New England","REGION1",960,14853290,6.46
+,"Pertussis","10190","2018","2018","Connecticut","09",43,3572665,1.20
+,"Pertussis","10190","2018","2018","Maine","23",446,1338404,33.32
+,"Pertussis","10190","2018","2018","Massachusetts","25",266,6902149,3.85
+,"Pertussis","10190","2018","2018","New Hampshire","33",137,1356458,10.10
+,"Pertussis","10190","2018","2018","Rhode Island","44",34,1057315,3.22
+,"Pertussis","10190","2018","2018","Vermont","50",34,626299,5.43
+,"Pertussis","10190","2018","2018","Middle Atlantic","REGION2",1295,41257789,3.14
+,"Pertussis","10190","2018","2018","New Jersey","34",275,8908520,3.09
+,"Pertussis","10190","2018","2018","New York (excluding New York City)","36888",373,11143461,3.35
+,"Pertussis","10190","2018","2018","New York City","75772",185,8398748,2.20
+,"Pertussis","10190","2018","2018","Pennsylvania","42",462,12807060,3.61
+,"Pertussis","10190","2018","2018","East North Central","REGION3",2537,46931883,5.41
+,"Pertussis","10190","2018","2018","Illinois","17",370,12741080,2.90
+,"Pertussis","10190","2018","2018","Indiana","18",184,6691878,2.75
+,"Pertussis","10190","2018","2018","Michigan","26",646,9995915,6.46
+,"Pertussis","10190","2018","2018","Ohio","39",637,11689442,5.45
+,"Pertussis","10190","2018","2018","Wisconsin","55",700,5813568,12.04
+,"Pertussis","10190","2018","2018","West North Central","REGION4",1257,21376861,5.88
+,"Pertussis","10190","2018","2018","Iowa","19",162,3156145,5.13
+,"Pertussis","10190","2018","2018","Kansas","20",153,2911505,5.26
+,"Pertussis","10190","2018","2018","Minnesota","27",397,5611179,7.08
+,"Pertussis","10190","2018","2018","Missouri","29",170,6126452,2.77
+,"Pertussis","10190","2018","2018","Nebraska","31",161,1929268,8.35
+,"Pertussis","10190","2018","2018","North Dakota","38",51,760077,6.71
+,"Pertussis","10190","2018","2018","South Dakota","46",163,882235,18.48
+,"Pertussis","10190","2018","2018","South Atlantic","REGION5",1703,65322408,2.61
+,"Pertussis","10190","2018","2018","Delaware","10",190,967171,19.64
+,"Pertussis","10190","2018","2018","District of Columbia","11",14,702455,1.99
+,"Pertussis","10190","2018","2018","Florida","12",326,21299325,1.53
+,"Pertussis","10190","2018","2018","Georgia","13",195,10519475,1.85
+,"Pertussis","10190","2018","2018","Maryland","24",119,6042718,1.97
+,"Pertussis","10190","2018","2018","North Carolina","37",389,10383620,3.75
+,"Pertussis","10190","2018","2018","South Carolina","45",198,5084127,3.89
+,"Pertussis","10190","2018","2018","Virginia","51",245,8517685,2.88
+,"Pertussis","10190","2018","2018","West Virginia","54",27,1805832,1.50
+,"Pertussis","10190","2018","2018","East South Central","REGION6",583,19112813,3.05
+,"Pertussis","10190","2018","2018","Alabama","01",219,4887871,4.48
+,"Pertussis","10190","2018","2018","Kentucky","21",198,4468402,4.43
+,"Pertussis","10190","2018","2018","Mississippi","28",43,2986530,1.44
+,"Pertussis","10190","2018","2018","Tennessee","47",123,6770010,1.82
+,"Pertussis","10190","2018","2018","West South Central","REGION7",1494,40318727,3.71
+,"Pertussis","10190","2018","2018","Arkansas","05",99,3013825,3.28
+,"Pertussis","10190","2018","2018","Louisiana","22",125,4659978,2.68
+,"Pertussis","10190","2018","2018","Oklahoma","40",103,3943079,2.61
+,"Pertussis","10190","2018","2018","Texas","48",1167,28701845,4.07
+,"Pertussis","10190","2018","2018","Mountain","REGION8",2214,24552385,9.02
+,"Pertussis","10190","2018","2018","Arizona","04",239,7171646,3.33
+,"Pertussis","10190","2018","2018","Colorado","08",614,5695564,10.78
+,"Pertussis","10190","2018","2018","Idaho","16",396,1754208,22.57
+,"Pertussis","10190","2018","2018","Montana","30",143,1062305,13.46
+,"Pertussis","10190","2018","2018","Nevada","32",86,3034392,2.83
+,"Pertussis","10190","2018","2018","New Mexico","35",242,2095428,11.55
+,"Pertussis","10190","2018","2018","Utah","49",432,3161105,13.67
+,"Pertussis","10190","2018","2018","Wyoming","56",62,577737,10.73
+,"Pertussis","10190","2018","2018","Pacific","REGION9",3566,53441278,6.67
+,"Pertussis","10190","2018","2018","Alaska","02",92,737438,12.48
+,"Pertussis","10190","2018","2018","California","06",2315,39557045,5.85
+,"Pertussis","10190","2018","2018","Hawaii","15",33,1420491,2.32
+,"Pertussis","10190","2018","2018","Oregon","41",499,4190713,11.91
+,"Pertussis","10190","2018","2018","Washington","53",627,7535591,8.32
+,"Pertussis","10190","2018","2018","Territories","REGION10",7,Not Available,Not Applicable
+,"Pertussis","10190","2018","2018","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2018","2018","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2018","2018","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2018","2018","Puerto Rico","72",7,Not Available,Not Applicable
+,"Pertussis","10190","2018","2018","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2018","2018","Non-U.S. Residents","REGION11",Not Available,Not Available,Not Available
+,"Pertussis","10190","2019","2019","United States","U.S.",18617,328239523,5.67
+,"Pertussis","10190","2019","2019","New England","REGION1",876,14845063,5.90
+,"Pertussis","10190","2019","2019","Connecticut","09",63,3565287,1.77
+,"Pertussis","10190","2019","2019","Maine","23",383,1344212,28.49
+,"Pertussis","10190","2019","2019","Massachusetts","25",294,6892503,4.27
+,"Pertussis","10190","2019","2019","New Hampshire","33",49,1359711,3.60
+,"Pertussis","10190","2019","2019","Rhode Island","44",44,1059361,4.15
+,"Pertussis","10190","2019","2019","Vermont","50",43,623989,6.89
+,"Pertussis","10190","2019","2019","Middle Atlantic","REGION2",2078,41137740,5.05
+,"Pertussis","10190","2019","2019","New Jersey","34",458,8882190,5.16
+,"Pertussis","10190","2019","2019","New York (excluding New York City)","36888",759,11116744,6.83
+,"Pertussis","10190","2019","2019","New York City","75772",222,8336817,2.66
+,"Pertussis","10190","2019","2019","Pennsylvania","42",639,12801989,4.99
+,"Pertussis","10190","2019","2019","East North Central","REGION3",3103,46902431,6.62
+,"Pertussis","10190","2019","2019","Illinois","17",912,12671821,7.20
+,"Pertussis","10190","2019","2019","Indiana","18",218,6732219,3.24
+,"Pertussis","10190","2019","2019","Michigan","26",543,9986857,5.44
+,"Pertussis","10190","2019","2019","Ohio","39",898,11689100,7.68
+,"Pertussis","10190","2019","2019","Wisconsin","55",532,5822434,9.14
+,"Pertussis","10190","2019","2019","West North Central","REGION4",1672,21426573,7.80
+,"Pertussis","10190","2019","2019","Iowa","19",244,3155070,7.73
+,"Pertussis","10190","2019","2019","Kansas","20",192,2913314,6.59
+,"Pertussis","10190","2019","2019","Minnesota","27",466,5639632,8.26
+,"Pertussis","10190","2019","2019","Missouri","29",393,6137428,6.40
+,"Pertussis","10190","2019","2019","Nebraska","31",192,1934408,9.93
+,"Pertussis","10190","2019","2019","North Dakota","38",38,762062,4.99
+,"Pertussis","10190","2019","2019","South Dakota","46",147,884659,16.62
+,"Pertussis","10190","2019","2019","South Atlantic","REGION5",1994,65784817,3.03
+,"Pertussis","10190","2019","2019","Delaware","10",7,973764,0.72
+,"Pertussis","10190","2019","2019","District of Columbia","11",26,705749,3.68
+,"Pertussis","10190","2019","2019","Florida","12",391,21477737,1.82
+,"Pertussis","10190","2019","2019","Georgia","13",339,10617423,3.19
+,"Pertussis","10190","2019","2019","Maryland","24",104,6045680,1.72
+,"Pertussis","10190","2019","2019","North Carolina","37",491,10488084,4.68
+,"Pertussis","10190","2019","2019","South Carolina","45",226,5148714,4.39
+,"Pertussis","10190","2019","2019","Virginia","51",371,8535519,4.35
+,"Pertussis","10190","2019","2019","West Virginia","54",39,1792147,2.18
+,"Pertussis","10190","2019","2019","East South Central","REGION6",725,19176181,3.78
+,"Pertussis","10190","2019","2019","Alabama","01",261,4903185,5.32
+,"Pertussis","10190","2019","2019","Kentucky","21",214,4467673,4.79
+,"Pertussis","10190","2019","2019","Mississippi","28",54,2976149,1.81
+,"Pertussis","10190","2019","2019","Tennessee","47",196,6829174,2.87
+,"Pertussis","10190","2019","2019","West South Central","REGION7",1574,40619450,3.87
+,"Pertussis","10190","2019","2019","Arkansas","05",133,3017804,4.41
+,"Pertussis","10190","2019","2019","Louisiana","22",86,4648794,1.85
+,"Pertussis","10190","2019","2019","Oklahoma","40",47,3956971,1.19
+,"Pertussis","10190","2019","2019","Texas","48",1308,28995881,4.51
+,"Pertussis","10190","2019","2019","Mountain","REGION8",2251,24854998,9.06
+,"Pertussis","10190","2019","2019","Arizona","04",379,7278717,5.21
+,"Pertussis","10190","2019","2019","Colorado","08",464,5758736,8.06
+,"Pertussis","10190","2019","2019","Idaho","16",252,1787065,14.10
+,"Pertussis","10190","2019","2019","Montana","30",495,1068778,46.31
+,"Pertussis","10190","2019","2019","Nevada","32",75,3080156,2.43
+,"Pertussis","10190","2019","2019","New Mexico","35",167,2096829,7.96
+,"Pertussis","10190","2019","2019","Utah","49",389,3205958,12.13
+,"Pertussis","10190","2019","2019","Wyoming","56",30,578759,5.18
+,"Pertussis","10190","2019","2019","Pacific","REGION9",4344,53492270,8.12
+,"Pertussis","10190","2019","2019","Alaska","02",45,731545,6.15
+,"Pertussis","10190","2019","2019","California","06",3225,39512223,8.16
+,"Pertussis","10190","2019","2019","Hawaii","15",54,1415872,3.81
+,"Pertussis","10190","2019","2019","Oregon","41",422,4217737,10.01
+,"Pertussis","10190","2019","2019","Washington","53",598,7614893,7.85
+,"Pertussis","10190","2019","2019","Territories","REGION10",161,Not Available,Not Applicable
+,"Pertussis","10190","2019","2019","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2019","2019","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2019","2019","Guam","66",12,Not Available,Not Applicable
+,"Pertussis","10190","2019","2019","Puerto Rico","72",149,Not Available,Not Applicable
+,"Pertussis","10190","2019","2019","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2019","2019","Non-U.S. Residents","REGION11",Not Available,Not Available,Not Available
+,"Pertussis","10190","2020","2020","United States","U.S.",6124,329484123,1.86
+,"Pertussis","10190","2020","2020","New England","REGION1",96,14847468,0.65
+,"Pertussis","10190","2020","2020","Connecticut","09",3,3557006,0.08
+,"Pertussis","10190","2020","2020","Maine","23",30,1350141,2.22
+,"Pertussis","10190","2020","2020","Massachusetts","25",44,6893574,0.64
+,"Pertussis","10190","2020","2020","New Hampshire","33",4,1366275,0.29
+,"Pertussis","10190","2020","2020","Rhode Island","44",4,1057125,0.38
+,"Pertussis","10190","2020","2020","Vermont","50",11,623347,1.76
+,"Pertussis","10190","2020","2020","Middle Atlantic","REGION2",745,41002401,1.82
+,"Pertussis","10190","2020","2020","New Jersey","34",131,8882371,1.47
+,"Pertussis","10190","2020","2020","New York (excluding New York City)","36888",142,11083563,1.28
+,"Pertussis","10190","2020","2020","New York City","75772",75,8253213,0.91
+,"Pertussis","10190","2020","2020","Pennsylvania","42",397,12783254,3.11
+,"Pertussis","10190","2020","2020","East North Central","REGION3",1128,46834910,2.41
+,"Pertussis","10190","2020","2020","Illinois","17",355,12587530,2.82
+,"Pertussis","10190","2020","2020","Indiana","18",52,6754953,0.77
+,"Pertussis","10190","2020","2020","Michigan","26",123,9966555,1.23
+,"Pertussis","10190","2020","2020","Ohio","39",473,11693217,4.05
+,"Pertussis","10190","2020","2020","Wisconsin","55",125,5832655,2.14
+,"Pertussis","10190","2020","2020","West North Central","REGION4",478,21481834,2.23
+,"Pertussis","10190","2020","2020","Iowa","19",31,3163561,0.98
+,"Pertussis","10190","2020","2020","Kansas","20",57,2913805,1.96
+,"Pertussis","10190","2020","2020","Minnesota","27",150,5657342,2.65
+,"Pertussis","10190","2020","2020","Missouri","29",129,6151548,2.10
+,"Pertussis","10190","2020","2020","Nebraska","31",57,1937552,2.94
+,"Pertussis","10190","2020","2020","North Dakota","38",19,765309,2.48
+,"Pertussis","10190","2020","2020","South Dakota","46",35,892717,3.92
+,"Pertussis","10190","2020","2020","South Atlantic","REGION5",870,66392969,1.31
+,"Pertussis","10190","2020","2020","Delaware","10",17,986809,1.72
+,"Pertussis","10190","2020","2020","District of Columbia","11",10,712816,1.40
+,"Pertussis","10190","2020","2020","Florida","12",216,21733312,0.99
+,"Pertussis","10190","2020","2020","Georgia","13",178,10710017,1.66
+,"Pertussis","10190","2020","2020","Maryland","24",33,6055802,0.54
+,"Pertussis","10190","2020","2020","North Carolina","37",196,10600823,1.85
+,"Pertussis","10190","2020","2020","South Carolina","45",83,5218040,1.59
+,"Pertussis","10190","2020","2020","Virginia","51",105,8590563,1.22
+,"Pertussis","10190","2020","2020","West Virginia","54",32,1784787,1.79
+,"Pertussis","10190","2020","2020","East South Central","REGION6",328,19252403,1.70
+,"Pertussis","10190","2020","2020","Alabama","01",154,4921532,3.13
+,"Pertussis","10190","2020","2020","Kentucky","21",65,4477251,1.45
+,"Pertussis","10190","2020","2020","Mississippi","28",10,2966786,0.34
+,"Pertussis","10190","2020","2020","Tennessee","47",99,6886834,1.44
+,"Pertussis","10190","2020","2020","West South Central","REGION7",439,41017382,1.07
+,"Pertussis","10190","2020","2020","Arkansas","05",35,3030522,1.15
+,"Pertussis","10190","2020","2020","Louisiana","22",35,4645318,0.75
+,"Pertussis","10190","2020","2020","Oklahoma","40",26,3980783,0.65
+,"Pertussis","10190","2020","2020","Texas","48",343,29360759,1.17
+,"Pertussis","10190","2020","2020","Mountain","REGION8",878,25213395,3.48
+,"Pertussis","10190","2020","2020","Arizona","04",331,7421401,4.46
+,"Pertussis","10190","2020","2020","Colorado","08",125,5807719,2.15
+,"Pertussis","10190","2020","2020","Idaho","16",157,1826913,8.59
+,"Pertussis","10190","2020","2020","Montana","30",40,1080577,3.70
+,"Pertussis","10190","2020","2020","Nevada","32",15,3138259,0.48
+,"Pertussis","10190","2020","2020","New Mexico","35",63,2106319,2.99
+,"Pertussis","10190","2020","2020","Utah","49",135,3249879,4.15
+,"Pertussis","10190","2020","2020","Wyoming","56",12,582328,2.06
+,"Pertussis","10190","2020","2020","Pacific","REGION9",1162,53441361,2.17
+,"Pertussis","10190","2020","2020","Alaska","02",13,731158,1.78
+,"Pertussis","10190","2020","2020","California","06",719,39368078,1.83
+,"Pertussis","10190","2020","2020","Hawaii","15",17,1407006,1.21
+,"Pertussis","10190","2020","2020","Oregon","41",170,4241507,4.01
+,"Pertussis","10190","2020","2020","Washington","53",243,7693612,3.16
+,"Pertussis","10190","2020","2020","Territories","REGION10",38,Not Available,Not Applicable
+,"Pertussis","10190","2020","2020","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2020","2020","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2020","2020","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2020","2020","Puerto Rico","72",38,Not Available,Not Applicable
+,"Pertussis","10190","2020","2020","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2020","2020","Non-U.S. Residents","REGION11",0,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","United States","U.S.",2116,329484123,0.64
+,"Pertussis","10190","2021","2021","New England","REGION1",32,14847468,0.22
+,"Pertussis","10190","2021","2021","Connecticut","09",7,3557006,0.20
+,"Pertussis","10190","2021","2021","Maine","23",16,1350141,1.19
+,"Pertussis","10190","2021","2021","Massachusetts","25",5,6893574,0.07
+,"Pertussis","10190","2021","2021","New Hampshire","33",4,1366275,0.29
+,"Pertussis","10190","2021","2021","Rhode Island","44",0,1057125,Not Applicable
+,"Pertussis","10190","2021","2021","Vermont","50",0,623347,Not Applicable
+,"Pertussis","10190","2021","2021","Middle Atlantic","REGION2",327,41002401,0.80
+,"Pertussis","10190","2021","2021","New Jersey","34",87,8882371,0.98
+,"Pertussis","10190","2021","2021","New York (excluding New York City)","36888",75,11083563,0.68
+,"Pertussis","10190","2021","2021","New York City","75772",72,8253213,0.87
+,"Pertussis","10190","2021","2021","Pennsylvania","42",93,12783254,0.73
+,"Pertussis","10190","2021","2021","East North Central","REGION3",295,46834910,0.63
+,"Pertussis","10190","2021","2021","Illinois","17",55,12587530,0.44
+,"Pertussis","10190","2021","2021","Indiana","18",47,6754953,0.70
+,"Pertussis","10190","2021","2021","Michigan","26",69,9966555,0.69
+,"Pertussis","10190","2021","2021","Ohio","39",114,11693217,0.97
+,"Pertussis","10190","2021","2021","Wisconsin","55",10,5832655,0.17
+,"Pertussis","10190","2021","2021","West North Central","REGION4",126,21481834,0.59
+,"Pertussis","10190","2021","2021","Iowa","19",23,3163561,0.73
+,"Pertussis","10190","2021","2021","Kansas","20",28,2913805,0.96
+,"Pertussis","10190","2021","2021","Minnesota","27",30,5657342,0.53
+,"Pertussis","10190","2021","2021","Missouri","29",20,6151548,0.33
+,"Pertussis","10190","2021","2021","Nebraska","31",12,1937552,0.62
+,"Pertussis","10190","2021","2021","North Dakota","38",12,765309,1.57
+,"Pertussis","10190","2021","2021","South Dakota","46",1,892717,0.11
+,"Pertussis","10190","2021","2021","South Atlantic","REGION5",303,66392969,0.46
+,"Pertussis","10190","2021","2021","Delaware","10",6,986809,0.61
+,"Pertussis","10190","2021","2021","District of Columbia","11",5,712816,0.70
+,"Pertussis","10190","2021","2021","Florida","12",55,21733312,0.25
+,"Pertussis","10190","2021","2021","Georgia","13",70,10710017,0.65
+,"Pertussis","10190","2021","2021","Maryland","24",10,6055802,0.17
+,"Pertussis","10190","2021","2021","North Carolina","37",52,10600823,0.49
+,"Pertussis","10190","2021","2021","South Carolina","45",51,5218040,0.98
+,"Pertussis","10190","2021","2021","Virginia","51",50,8590563,0.58
+,"Pertussis","10190","2021","2021","West Virginia","54",4,1784787,0.22
+,"Pertussis","10190","2021","2021","East South Central","REGION6",127,19252403,0.66
+,"Pertussis","10190","2021","2021","Alabama","01",49,4921532,1.00
+,"Pertussis","10190","2021","2021","Kentucky","21",31,4477251,0.69
+,"Pertussis","10190","2021","2021","Mississippi","28",1,2966786,0.03
+,"Pertussis","10190","2021","2021","Tennessee","47",46,6886834,0.67
+,"Pertussis","10190","2021","2021","West South Central","REGION7",238,41017382,0.58
+,"Pertussis","10190","2021","2021","Arkansas","05",16,3030522,0.53
+,"Pertussis","10190","2021","2021","Louisiana","22",16,4645318,0.34
+,"Pertussis","10190","2021","2021","Oklahoma","40",5,3980783,0.13
+,"Pertussis","10190","2021","2021","Texas","48",201,29360759,0.68
+,"Pertussis","10190","2021","2021","Mountain","REGION8",452,25213395,1.79
+,"Pertussis","10190","2021","2021","Arizona","04",188,7421401,2.53
+,"Pertussis","10190","2021","2021","Colorado","08",61,5807719,1.05
+,"Pertussis","10190","2021","2021","Idaho","16",5,1826913,0.27
+,"Pertussis","10190","2021","2021","Montana","30",1,1080577,0.09
+,"Pertussis","10190","2021","2021","Nevada","32",33,3138259,1.05
+,"Pertussis","10190","2021","2021","New Mexico","35",31,2106319,1.47
+,"Pertussis","10190","2021","2021","Utah","49",133,3249879,4.09
+,"Pertussis","10190","2021","2021","Wyoming","56",0,582328,Not Applicable
+,"Pertussis","10190","2021","2021","Pacific","REGION9",216,53441361,0.40
+,"Pertussis","10190","2021","2021","Alaska","02",1,731158,0.14
+,"Pertussis","10190","2021","2021","California","06",192,39368078,0.49
+,"Pertussis","10190","2021","2021","Hawaii","15",5,1407006,0.36
+,"Pertussis","10190","2021","2021","Oregon","41",3,4241507,0.07
+,"Pertussis","10190","2021","2021","Washington","53",15,7693612,0.19
+,"Pertussis","10190","2021","2021","Territories","REGION10",119,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","Puerto Rico","72",119,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2021","2021","Non-U.S. Residents","REGION11",0,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","United States","U.S.",3044,333287557,0.91
+,"Pertussis","10190","2022","2022","New England","REGION1",94,15129548,0.62
+,"Pertussis","10190","2022","2022","Connecticut","09",7,3626205,0.19
+,"Pertussis","10190","2022","2022","Maine","23",79,1385340,5.70
+,"Pertussis","10190","2022","2022","Massachusetts","25",4,6981974,0.06
+,"Pertussis","10190","2022","2022","New Hampshire","33",2,1395231,0.14
+,"Pertussis","10190","2022","2022","Rhode Island","44",0,1093734,Not Applicable
+,"Pertussis","10190","2022","2022","Vermont","50",2,647064,0.31
+,"Pertussis","10190","2022","2022","Middle Atlantic","REGION2",638,41910858,1.52
+,"Pertussis","10190","2022","2022","New Jersey","34",220,9261699,2.38
+,"Pertussis","10190","2022","2022","New York (excluding New York City)","36888",212,11341254,1.87
+,"Pertussis","10190","2022","2022","New York City","75772",107,8335897,1.28
+,"Pertussis","10190","2022","2022","Pennsylvania","42",99,12972008,0.76
+,"Pertussis","10190","2022","2022","East North Central","REGION3",428,47097779,0.91
+,"Pertussis","10190","2022","2022","Illinois","17",94,12582032,0.75
+,"Pertussis","10190","2022","2022","Indiana","18",80,6833037,1.17
+,"Pertussis","10190","2022","2022","Michigan","26",85,10034113,0.85
+,"Pertussis","10190","2022","2022","Ohio","39",149,11756058,1.27
+,"Pertussis","10190","2022","2022","Wisconsin","55",20,5892539,0.34
+,"Pertussis","10190","2022","2022","West North Central","REGION4",160,21689816,0.74
+,"Pertussis","10190","2022","2022","Iowa","19",28,3200517,0.87
+,"Pertussis","10190","2022","2022","Kansas","20",27,2937150,0.92
+,"Pertussis","10190","2022","2022","Minnesota","27",31,5717184,0.54
+,"Pertussis","10190","2022","2022","Missouri","29",26,6177957,0.42
+,"Pertussis","10190","2022","2022","Nebraska","31",34,1967923,1.73
+,"Pertussis","10190","2022","2022","North Dakota","38",13,779261,1.67
+,"Pertussis","10190","2022","2022","South Dakota","46",1,909824,0.11
+,"Pertussis","10190","2022","2022","South Atlantic","REGION5",353,67452940,0.52
+,"Pertussis","10190","2022","2022","Delaware","10",2,1018396,0.20
+,"Pertussis","10190","2022","2022","District of Columbia","11",4,671803,0.60
+,"Pertussis","10190","2022","2022","Florida","12",60,22244823,0.27
+,"Pertussis","10190","2022","2022","Georgia","13",88,10912876,0.81
+,"Pertussis","10190","2022","2022","Maryland","24",20,6164660,0.32
+,"Pertussis","10190","2022","2022","North Carolina","37",45,10698973,0.42
+,"Pertussis","10190","2022","2022","South Carolina","45",47,5282634,0.89
+,"Pertussis","10190","2022","2022","Virginia","51",73,8683619,0.84
+,"Pertussis","10190","2022","2022","West Virginia","54",14,1775156,0.79
+,"Pertussis","10190","2022","2022","East South Central","REGION6",130,19578002,0.66
+,"Pertussis","10190","2022","2022","Alabama","01",51,5074296,1.01
+,"Pertussis","10190","2022","2022","Kentucky","21",41,4512310,0.91
+,"Pertussis","10190","2022","2022","Mississippi","28",0,2940057,Not Applicable
+,"Pertussis","10190","2022","2022","Tennessee","47",38,7051339,0.54
+,"Pertussis","10190","2022","2022","West South Central","REGION7",222,41685250,0.53
+,"Pertussis","10190","2022","2022","Arkansas","05",19,3045637,0.62
+,"Pertussis","10190","2022","2022","Louisiana","22",5,4590241,0.11
+,"Pertussis","10190","2022","2022","Oklahoma","40",5,4019800,0.12
+,"Pertussis","10190","2022","2022","Texas","48",193,30029572,0.64
+,"Pertussis","10190","2022","2022","Mountain","REGION8",627,25514320,2.46
+,"Pertussis","10190","2022","2022","Arizona","04",106,7359197,1.44
+,"Pertussis","10190","2022","2022","Colorado","08",230,5839926,3.94
+,"Pertussis","10190","2022","2022","Idaho","16",9,1939033,0.46
+,"Pertussis","10190","2022","2022","Montana","30",3,1122867,0.27
+,"Pertussis","10190","2022","2022","Nevada","32",94,3177772,2.96
+,"Pertussis","10190","2022","2022","New Mexico","35",48,2113344,2.27
+,"Pertussis","10190","2022","2022","Utah","49",135,3380800,3.99
+,"Pertussis","10190","2022","2022","Wyoming","56",2,581381,0.34
+,"Pertussis","10190","2022","2022","Pacific","REGION9",392,53229044,0.74
+,"Pertussis","10190","2022","2022","Alaska","02",2,733583,0.27
+,"Pertussis","10190","2022","2022","California","06",291,39029342,0.75
+,"Pertussis","10190","2022","2022","Hawaii","15",6,1440196,0.42
+,"Pertussis","10190","2022","2022","Oregon","41",17,4240137,0.40
+,"Pertussis","10190","2022","2022","Washington","53",76,7785786,0.98
+,"Pertussis","10190","2022","2022","Territories","REGION10",71,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","Puerto Rico","72",71,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2022","2022","Non-U.S. Residents","REGION11",0,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","United States","U.S.",7063,334914895,2.11
+,"Pertussis","10190","2023","2023","New England","REGION1",112,15159777,0.74
+,"Pertussis","10190","2023","2023","Connecticut","09",11,3617176,0.30
+,"Pertussis","10190","2023","2023","Maine","23",76,1395722,5.45
+,"Pertussis","10190","2023","2023","Massachusetts","25",14,7001399,0.20
+,"Pertussis","10190","2023","2023","New Hampshire","33",7,1402054,0.50
+,"Pertussis","10190","2023","2023","Rhode Island","44",3,1095962,0.27
+,"Pertussis","10190","2023","2023","Vermont","50",1,647464,0.15
+,"Pertussis","10190","2023","2023","Middle Atlantic","REGION2",1757,41823740,4.20
+,"Pertussis","10190","2023","2023","New Jersey","34",343,9290841,3.69
+,"Pertussis","10190","2023","2023","New York (excluding New York City)","36888",593,11313181,5.24
+,"Pertussis","10190","2023","2023","New York City","75772",419,8258035,5.07
+,"Pertussis","10190","2023","2023","Pennsylvania","42",402,12961683,3.10
+,"Pertussis","10190","2023","2023","East North Central","REGION3",1862,47146039,3.95
+,"Pertussis","10190","2023","2023","Illinois","17",689,12549689,5.49
+,"Pertussis","10190","2023","2023","Indiana","18",175,6862199,2.55
+,"Pertussis","10190","2023","2023","Michigan","26",110,10037261,1.10
+,"Pertussis","10190","2023","2023","Ohio","39",837,11785935,7.10
+,"Pertussis","10190","2023","2023","Wisconsin","55",51,5910955,0.86
+,"Pertussis","10190","2023","2023","West North Central","REGION4",349,21763244,1.60
+,"Pertussis","10190","2023","2023","Iowa","19",58,3207004,1.81
+,"Pertussis","10190","2023","2023","Kansas","20",69,2940546,2.35
+,"Pertussis","10190","2023","2023","Minnesota","27",64,5737915,1.12
+,"Pertussis","10190","2023","2023","Missouri","29",77,6196156,1.24
+,"Pertussis","10190","2023","2023","Nebraska","31",13,1978379,0.66
+,"Pertussis","10190","2023","2023","North Dakota","38",17,783926,2.17
+,"Pertussis","10190","2023","2023","South Dakota","46",51,919318,5.55
+,"Pertussis","10190","2023","2023","South Atlantic","REGION5",539,68225883,0.79
+,"Pertussis","10190","2023","2023","Delaware","10",2,1031890,0.19
+,"Pertussis","10190","2023","2023","District of Columbia","11",5,678972,0.74
+,"Pertussis","10190","2023","2023","Florida","12",85,22610726,0.38
+,"Pertussis","10190","2023","2023","Georgia","13",96,11029227,0.87
+,"Pertussis","10190","2023","2023","Maryland","24",21,6180253,0.34
+,"Pertussis","10190","2023","2023","North Carolina","37",105,10835491,0.97
+,"Pertussis","10190","2023","2023","South Carolina","45",77,5373555,1.43
+,"Pertussis","10190","2023","2023","Virginia","51",120,8715698,1.38
+,"Pertussis","10190","2023","2023","West Virginia","54",28,1770071,1.58
+,"Pertussis","10190","2023","2023","East South Central","REGION6",248,19700801,1.26
+,"Pertussis","10190","2023","2023","Alabama","01",45,5108468,0.88
+,"Pertussis","10190","2023","2023","Kentucky","21",118,4526154,2.61
+,"Pertussis","10190","2023","2023","Mississippi","28",3,2939690,0.10
+,"Pertussis","10190","2023","2023","Tennessee","47",82,7126489,1.15
+,"Pertussis","10190","2023","2023","West South Central","REGION7",410,42198606,0.97
+,"Pertussis","10190","2023","2023","Arkansas","05",38,3067732,1.24
+,"Pertussis","10190","2023","2023","Louisiana","22",12,4573749,0.26
+,"Pertussis","10190","2023","2023","Oklahoma","40",20,4053824,0.49
+,"Pertussis","10190","2023","2023","Texas","48",340,30503301,1.11
+,"Pertussis","10190","2023","2023","Mountain","REGION8",987,25716830,3.84
+,"Pertussis","10190","2023","2023","Arizona","04",344,7431344,4.63
+,"Pertussis","10190","2023","2023","Colorado","08",216,5877610,3.67
+,"Pertussis","10190","2023","2023","Idaho","16",34,1964726,1.73
+,"Pertussis","10190","2023","2023","Montana","30",47,1132812,4.15
+,"Pertussis","10190","2023","2023","Nevada","32",67,3194176,2.10
+,"Pertussis","10190","2023","2023","New Mexico","35",41,2114371,1.94
+,"Pertussis","10190","2023","2023","Utah","49",238,3417734,6.96
+,"Pertussis","10190","2023","2023","Wyoming","56",0,584057,Not Applicable
+,"Pertussis","10190","2023","2023","Pacific","REGION9",799,53179975,1.50
+,"Pertussis","10190","2023","2023","Alaska","02",26,733406,3.55
+,"Pertussis","10190","2023","2023","California","06",643,38965193,1.65
+,"Pertussis","10190","2023","2023","Hawaii","15",3,1435138,0.21
+,"Pertussis","10190","2023","2023","Oregon","41",40,4233358,0.94
+,"Pertussis","10190","2023","2023","Washington","53",87,7812880,1.11
+,"Pertussis","10190","2023","2023","Territories","REGION10",36,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","American Samoa","60",0,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","Commonwealth of Northern Mariana Islands","69",0,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","Guam","66",0,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","Puerto Rico","72",36,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","U.S. Virgin Islands","78",0,Not Available,Not Applicable
+,"Pertussis","10190","2023","2023","Non-U.S. Residents","REGION11",0,Not Available,Not Applicable
+"---"
+"Dataset: NNDSS Annual Summary Data 2016-2023"
+"Query Parameters:"
+"Title: Pertussis Incidence Rates"
+"Disease: Pertussis"
+"Group By: Disease; Year; Regions/States"
+"Show Totals: Disabled"
+"Show Zero Values: True"
+"Calculate Rates Per: 100,000"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/nndss.html for more information."
+"---"
+"Query Date: Oct 21, 2026 6:18:26 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention. National Notifiable Diseases Surveillance System (NNDSS) Annual"
+"Summary Data for years 2016-2023, United States, CDC WONDER online database. Accessed at"
+"http://wonder.cdc.gov/nndss-annual-summary.html on Oct 21, 2026 6:18:26 PM"
+"---"
+Messages:
+"1. Totals are disabled when data are grouped Regions/States, Regions, or States."
+"---"
+Footnotes:
+"1. Zero when no reported cases ? The reporting jurisdiction did not submit any cases to CDC. Not reportable ? The disease or"
+"condition was not reportable by law, statute, or regulation in the reporting jurisdiction. Unavailable ? The data are"
+"unavailable. See Caveats below for more information."
+"---"
+Caveats:
+"1. 'Not Available' appears when population data is not available due to its removal because event was Not Nationally Notifiable,"
+"Not Reportable, or Unavailable."
+"2. 'Not Applicable' appears when a rate can not be caluculated due to lack of population."
+"3. When the number of cases is zero, the reporting jurisdiction did not submit any cases to CDC."
+"4. When evaluating event case counts over time, you should carefully consider the effect that event case definition revisions"
+"(e.g. combining, subsetting, and retirement of events) will have on your query results. More information:"
+"http://wonder.cdc.gov/wonder/help/nndss.html#Reporting."
+"5. Acknowledgment: CDC acknowledges the local, state, and territorial health departments that collected the data from a range of"
+"case ascertainment sources (e.g. healthcare providers, hospitals, laboratories) and reported these data to CDC's National"
+"Notifiable Diseases Surveillance System."
+"6. Population estimates for calculating incidence rates are mid-year resident populations for the reporting jurisdictions from"
+"the most recent series of estimates available at the time of publication. Congenital syphilis incidence rates are calculated"
+"with the number of live births in the reporting jurisdictions for the year. More information:"
+"http://wonder.cdc.gov/wonder/help/nndss.html#Population-Sources."
+"7. When the national frequency of a disease is less than 25 cases in a year, then the data for race and ethnicity are"
+"categorized as Suppressed. More information: http://wonder.cdc.gov/wonder/help/nndss.html#Privacy-Policies."
+"8. Values in charts and maps refer to statistical measures, such as Case Counts, Populations and Rates. Codes refer to the brief"
+"designation assigned to category labels, such as the Federal Information Processing System (FIPS) code 36 for New York State."
+"9. Any variation of disease incidence by race or ethnicity does not reflect biological differences but reflects systemic,"
+"cultural, behavioral, and social factors including structural racism."
