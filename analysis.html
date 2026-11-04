@@ -7802,7 +7802,36 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="D502-Capstone-Project---Jon-Taylor">D502 Capstone Project - Jon Taylor<a class="anchor-link" href="#D502-Capstone-Project---Jon-Taylor">¶</a></h1><h3 id="Analysis-of-CDC-pertussis-incidence-data">Analysis of CDC pertussis incidence data<a class="anchor-link" href="#Analysis-of-CDC-pertussis-incidence-data">¶</a></h3>
+<h1 id="D502-Capstone-Project---Jon-Taylor">D502 Capstone Project - Jon Taylor<a class="anchor-link" href="#D502-Capstone-Project---Jon-Taylor">¶</a></h1><h2 id="A-Comparison-of-Reported-Pertussis-Incidence-in-U.S.-Jurisdictions-Before-and-After-the-COVID-19-Pandemic">A Comparison of Reported Pertussis Incidence in U.S. Jurisdictions Before and After the COVID-19 Pandemic<a class="anchor-link" href="#A-Comparison-of-Reported-Pertussis-Incidence-in-U.S.-Jurisdictions-Before-and-After-the-COVID-19-Pandemic">¶</a></h2><h3 id="Project-Overview">Project Overview<a class="anchor-link" href="#Project-Overview">¶</a></h3><p>This notebook presents a quantitative, retrospective observational analysis of publicly available pertussis surveillance data from the Centers for Disease Control and Prevention (CDC) via the National Notifiable Diseases Surveillance System (NNDSS).</p>
+<p>The purpose of the analysis is to determine whether reported pertussis incidence differed significantly between two study periods across the 50 U.S. states and the District of Columbia.</p>
+<p>Research question:</p>
+<p>Did reported pertussis incidence differ significantly between the pre-pandemic period (2016-2019) and the post-acute-pandemic period (2022-2023) across the 50 U.S. states and the District of Columbia?</p>
+<h3 id="Analytical-Approach">Analytical Approach<a class="anchor-link" href="#Analytical-Approach">¶</a></h3><p>The analysis uses annual reported incidence rates per 100,000 population for each jurisdiction. For each jurisdiction, the mean annual rate is calculated separately for the pre-pandemic and post-acute-pandemic periods. The difference between these two means is then used to compare changes within the same jurisdiction.</p>
+<p>The years 2020 and 2021 are excluded from the period averages. The analysis uses descriptive statistics, visualizations, and inferential statistical tests to evaluate the magnitude, direction, and statistical significance of the difference.</p>
+<p>The paired-samples t-test is the primary inferential method. The Wilcoxon signed-rank test and exact sign test provide supplementary analyses because the paired differences do not follow a normal distribution.</p>
+<h3 id="Tools-and-Libraries">Tools and Libraries<a class="anchor-link" href="#Tools-and-Libraries">¶</a></h3><p>The analysis uses Python and the following libraries:</p>
+<ul>
+<li>pandas: Importing, cleaning, organizing, and aggregating the surveillance data.</li>
+<li>NumPy: Numerical calculations and statistical computations.</li>
+<li>SciPy: Inferential statistical tests.</li>
+<li>Matplotlib: Data visualization.</li>
+<li>Jupyter Notebook: Combining code, results, visualizations, and explanatory documentation.</li>
+</ul>
+<h3 id="Interpretation-and-Limitations">Interpretation and Limitations<a class="anchor-link" href="#Interpretation-and-Limitations">¶</a></h3><p>The outcome measured in this project is reported pertussis incidence, not the incidence of all infections in the population. The pertussis surveillance case definition changed effective January 1, 2020, which limits direct comparability between the two study periods. The retrospective observational design does not establish that the COVID-19 pandemic caused any observed differences.</p>
+<p>The notebook documents the data preparation, statistical methods, results, and visualizations used to address the research question.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9d92ab0e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="1.-Data-Loading-and-Initial-Inspection">1. Data Loading and Initial Inspection<a class="anchor-link" href="#1.-Data-Loading-and-Initial-Inspection">¶</a></h2><h3 id="1.1-Importing-Libraries-and-Loading-the-Data">1.1 Importing Libraries and Loading the Data<a class="anchor-link" href="#1.1-Importing-Libraries-and-Loading-the-Data">¶</a></h3><p>The analysis begins by importing the libraries for data preparation, statistical analysis, and visualization.</p>
+<p>The original CDC NNDSS annual summary data are stored in a CSV file covering 2016 through 2023. The file is loaded into a pandas DataFrame for inspection and preparation. A file existence check is performed before importing the data ensuring the notebook produces a clear error if the expected CSV file is unavailable.</p>
+<p>The original dataset is retained separately from the cleaned dataset so that the preparation steps can be reproduced and the source data remain unchanged.</p>
 </div>
 </div>
 </div>
@@ -7811,7 +7840,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [68]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span> 
@@ -7820,6 +7849,7 @@ a.anchor-link {
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span> 
 
+<span class="c1"># import data</span>
 <span class="n">file_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'NNDSS_Annual_Summary_Data_2016-2023_Pertussis.csv'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -7827,6 +7857,7 @@ a.anchor-link {
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 
+<span class="c1"># display information about the dataset</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Dataset shape: '</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -7975,12 +8006,32 @@ memory usage: 46.9+ KB
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ea812fc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="1.2-Examining-the-Original-Dataset">1.2 Examining the Original Dataset<a class="anchor-link" href="#1.2-Examining-the-Original-Dataset">¶</a></h3><p>After loading the CSV file, the dataset is examined to understand its structure and identify potential data-quality issues before making any changes.</p>
+<p>The inspection includes:</p>
+<ul>
+<li>Column names: Identify the available fields and confirm which columns contain the information needed for the analysis.</li>
+<li>Missing values: Determine whether any columns contain incomplete records.</li>
+<li>Records by year: Examine how many rows are associated with each year, including rows without a year value.</li>
+<li>Sample records: Review the first and last records to understand the format and identify documentation or other non-data rows.</li>
+</ul>
+<p>The original file contains both annual surveillance records and documentation rows. These documentation rows must be distinguished from the actual observations before the data can be analyzed. The initial inspection also helps identify missing values and inconsistencies that require attention during data preparation.</p>
+<p>At this stage, the original data are being examined rather than modified. The next section addresses the cleaning and preparation steps needed to produce a consistent dataset for the jurisdiction-level comparisons.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dd369cf3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [69]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Column names:"</span><span class="p">)</span>
@@ -8405,12 +8456,39 @@ Last 15 rows:
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=258feec3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2.-Data-Cleaning-and-Preparation">2. Data Cleaning and Preparation<a class="anchor-link" href="#2.-Data-Cleaning-and-Preparation">¶</a></h2><p>The original dataset contains annual surveillance records along with documentation rows that are not observations. Before conducting the analysis, the data must be cleaned and standardized so that each record represents a valid jurisdiction-year observation.</p>
+<p>The preparation process includes removing documentation rows, converting the relevant fields to numeric data types, combining the two New York reporting areas, and retaining only the 50 states and the District of Columbia. These steps produce a consistent set of jurisdiction-level observations for the study period.</p>
+<p>The original CSV file is not modified. All cleaning and preparation are performed on a copy of the imported DataFrame, preserving the source data for reference.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e4bb571">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.1-Standardizing-Jurisdiction-Records">2.1 Standardizing Jurisdiction Records<a class="anchor-link" href="#2.1-Standardizing-Jurisdiction-Records">¶</a></h3><p>The first cleaning step removes rows without a year value, as these rows contain CDC documentation rather than annual surveillance observations. The relevant fields (Year, Case Count, Population, and Published Rate) are then converted to numeric data types to support calculations and statistical analyses.</p>
+<p>The dataset initially reports New York City and New York State, excluding New York City, as separate reporting areas. These records are combined by year to create a single New York observation. The annual case counts and population denominators are summed, and the combined incidence rate is recalculated as:</p>
+<p>Incidence Rate = Total Cases / Total Population *100,000</p>
+<p>The national aggregate and reporting areas outside the 50 states and the District of Columbia are excluded. This leaves the jurisdictions defined in the research question while retaining all eight study years.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=09f840a6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [70]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Keep rows that contain actual data, excluding the CDC documentation notes.</span>
@@ -8617,12 +8695,25 @@ Combined New York records:
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ead19a63">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.2-Addressing-Missing-Incidence-Rates">2.2 Addressing Missing Incidence Rates<a class="anchor-link" href="#2.2-Addressing-Missing-Incidence-Rates">¶</a></h3><p>The completeness check identifies observations with missing values in the Published Rate column. A missing published rate does not necessarily mean the underlying case count or population data are unavailable; these records must be examined before deciding how to handle them.</p>
+<p>Six observations have missing published rates despite having zero reported cases and positive population denominators. Because dividing zero cases by a positive population yields an incidence rate of zero, these six rates can be set to <code>0.0</code> based on the available data.</p>
+<p>This correction is a mathematical calculation rather than statistical imputation. The next step applies the correction only when the case count is zero and the population denominator is positive. Any remaining missing rates are retained for further investigation rather than automatically filled.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e782c9b6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [71]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Find state-year records with missing published rates.</span>
@@ -8746,7 +8837,7 @@ Combined New York records:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [72]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Fill missing rates only when the case count is zero</span>
@@ -8828,12 +8919,31 @@ Rates still missing: 0
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dabcc9d2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.3-Validating-the-Prepared-Dataset">2.3 Validating the Prepared Dataset<a class="anchor-link" href="#2.3-Validating-the-Prepared-Dataset">¶</a></h3><p>After correcting the six missing rates, the prepared dataset is checked for completeness and consistency. The validation checks confirm that:</p>
+<ul>
+<li>The dataset contains exactly 51 jurisdictions: the 50 states and the District of Columbia.</li>
+<li>Each jurisdiction has one observation for each year from 2016 through 2023.</li>
+<li>No jurisdiction-year combinations are duplicated.</li>
+<li>Each year contains exactly 51 jurisdiction records.</li>
+<li>No missing values remain in the Published Rate column.</li>
+</ul>
+<p>These checks establish that the dataset has the structure required for the paired comparison. The expected result is 408 observations, representing 51 jurisdictions across eight years.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ebf97f5f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [73]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">"Regions/States"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">51</span>
@@ -8864,12 +8974,25 @@ Validation passed.
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bc1ac052">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.4-Saving-the-Cleaned-Dataset">2.4 Saving the Cleaned Dataset<a class="anchor-link" href="#2.4-Saving-the-Cleaned-Dataset">¶</a></h3><p>Once the validation checks pass, the prepared data are saved to a separate CSV file named <code>cleaned_pertussis_data.csv</code>.</p>
+<p>Keeping the cleaned dataset separate from the original CDC download preserves the source data and makes the preparation process reproducible. The cleaned file contains one record per jurisdiction per year, with the incidence rate available for every observation.</p>
+<p>The next section uses this validated dataset to calculate the jurisdiction-level averages for the two comparison periods.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f1b20a65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [74]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Save validated dataframe as CSV</span>
@@ -8898,12 +9021,33 @@ Cleaned dataset columns: ['Disease', 'Disease Code', 'Year', 'Year Code', 'Regio
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8e7d2312">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="3.-Calculating-and-Comparing-Period-Averages">3. Calculating and Comparing Period Averages<a class="anchor-link" href="#3.-Calculating-and-Comparing-Period-Averages">¶</a></h2><p>The cleaned dataset contains annual reported pertussis incidence rates for each of the 51 jurisdictions from 2016 through 2023. To address the research question, the analysis calculates a mean annual incidence rate for each jurisdiction during each comparison period.</p>
+<p>The two periods are defined as follows:</p>
+<ul>
+<li>Pre-pandemic period: 2016-2019, using four annual observations per jurisdiction.</li>
+<li>Post-acute-pandemic period: 2022-2023, using two annual observations per jurisdiction.</li>
+</ul>
+<p>The years 2020 and 2021 are excluded from the period averages. Each jurisdiction's mean is calculated using its published annual incidence rates, rather than combining case counts or population denominators across jurisdictions.</p>
+<p>The two period averages are then combined into a comparison dataset containing one paired observation for each jurisdiction. A difference is calculated by subtracting the pre-pandemic mean from the post-acute-pandemic mean:</p>
+<p>Difference = Post-acute-pandemic mean - Pre-pandemic mean</p>
+<p>A negative difference indicates that the jurisdiction's mean reported incidence rate was lower during the post-acute-pandemic period. A positive difference indicates an increase.</p>
+<p>This paired structure allows the analysis to evaluate changes within the same jurisdictions rather than treating the two periods as independent groups.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d1fcb0ea">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [75]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define the two comparison periods.</span>
@@ -9322,189 +9466,36 @@ Jurisdictions with no change: 0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54bbd43c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [76]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Paired differences: later-period mean minus pre-pandemic mean.</span>
-<span class="n">differences</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[</span><span class="s2">"Difference"</span><span class="p">]</span>
-
-<span class="c1"># 1. Test normality of the paired differences.</span>
-<span class="n">shapiro_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
-
-<span class="c1"># 2. Paired t-test on the jurisdiction-level period means.</span>
-<span class="n">ttest_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span>
-    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Post_Mean_Rate"</span><span class="p">],</span>
-    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Pre_Mean_Rate"</span><span class="p">]</span>
-<span class="p">)</span>
-
-<span class="c1"># 3. Wilcoxon signed-rank test.</span>
-<span class="n">wilcoxon_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span>
-    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Post_Mean_Rate"</span><span class="p">],</span>
-    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Pre_Mean_Rate"</span><span class="p">],</span>
-    <span class="n">alternative</span><span class="o">=</span><span class="s2">"two-sided"</span>
-<span class="p">)</span>
-
-<span class="c1"># 4. Exact binomial sign test.</span>
-<span class="n">n_decreased</span> <span class="o">=</span> <span class="p">(</span><span class="n">differences</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">n_increased</span> <span class="o">=</span> <span class="p">(</span><span class="n">differences</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-
-<span class="n">sign_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binomtest</span><span class="p">(</span>
-    <span class="n">n_decreased</span><span class="p">,</span>
-    <span class="n">n</span><span class="o">=</span><span class="n">n_decreased</span> <span class="o">+</span> <span class="n">n_increased</span><span class="p">,</span>
-    <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">alternative</span><span class="o">=</span><span class="s2">"two-sided"</span>
-<span class="p">)</span>
-
-<span class="c1"># 5. 95% confidence interval for the mean paired difference.</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
-<span class="n">mean_diff</span> <span class="o">=</span> <span class="n">differences</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">sd_diff</span> <span class="o">=</span> <span class="n">differences</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">se_diff</span> <span class="o">=</span> <span class="n">sd_diff</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">critical_t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="n">ci_low</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">-</span> <span class="n">critical_t</span> <span class="o">*</span> <span class="n">se_diff</span>
-<span class="n">ci_high</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">critical_t</span> <span class="o">*</span> <span class="n">se_diff</span>
-
-<span class="c1"># 6. Cohen's dz effect size for paired observations.</span>
-<span class="n">cohens_dz</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">/</span> <span class="n">sd_diff</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"SHAPIRO-WILK NORMALITY TEST"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"W = </span><span class="si">{</span><span class="n">shapiro_result</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, "</span>
-      <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">shapiro_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">PAIRED T-TEST"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"t(</span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">ttest_result</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, "</span>
-      <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">ttest_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">WILCOXON SIGNED-RANK TEST"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Statistic = </span><span class="si">{</span><span class="n">wilcoxon_result</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, "</span>
-      <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">wilcoxon_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXACT SIGN TEST"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Decreases = </span><span class="si">{</span><span class="n">n_decreased</span><span class="si">}</span><span class="s2">, increases = </span><span class="si">{</span><span class="n">n_increased</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">sign_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">95% CONFIDENCE INTERVAL FOR MEAN PAIRED DIFFERENCE"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean difference = </span><span class="si">{</span><span class="n">mean_diff</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"95% CI = [</span><span class="si">{</span><span class="n">ci_low</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_high</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">COHEN'S dz"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"d = </span><span class="si">{</span><span class="n">cohens_dz</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>SHAPIRO-WILK NORMALITY TEST
-W = 0.8112, p = 1.32835e-06
-
-PAIRED T-TEST
-t(50) = -8.1410, p = 1.00738e-10
-
-WILCOXON SIGNED-RANK TEST
-Statistic = 1.0000, p = 5.46152e-10
-
-EXACT SIGN TEST
-Decreases = 50, increases = 1
-p = 4.61853e-14
-
-95% CONFIDENCE INTERVAL FOR MEAN PAIRED DIFFERENCE
-Mean difference = -5.2232
-95% CI = [-6.5119, -3.9345]
-
-COHEN'S dz
-d = -1.1400
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=373a6c7c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a17d8354">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Measure</th>
-<th style="text-align:right">Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Jurisdictions</td>
-<td style="text-align:right">51</td>
-</tr>
-<tr>
-<td style="text-align:left">Pre-period mean incidence rate</td>
-<td style="text-align:right">6.680 per 100,000</td>
-</tr>
-<tr>
-<td style="text-align:left">Later-period mean incidence rate</td>
-<td style="text-align:right">1.457 per 100,000</td>
-</tr>
-<tr>
-<td style="text-align:left">Mean paired difference</td>
-<td style="text-align:right">−5.223 per 100,000</td>
-</tr>
-<tr>
-<td style="text-align:left">Decrease in unweighted means of jurisdiction-level rates</td>
-<td style="text-align:right">78.2%</td>
-</tr>
-<tr>
-<td style="text-align:left">95% CI for mean paired difference</td>
-<td style="text-align:right">[-6.512, -3.935]</td>
-</tr>
-<tr>
-<td style="text-align:left">Cohen's dz</td>
-<td style="text-align:right">-1.140</td>
-</tr>
-<tr>
-<td style="text-align:left">Jurisdictions with a decrease</td>
-<td style="text-align:right">50 of 51</td>
-</tr>
-<tr>
-<td style="text-align:left">Jurisdiction with an increase</td>
-<td style="text-align:right">Nevada</td>
-</tr>
-</tbody>
-</table>
-<p>Paired t-test</p>
-<p>p = 1.00738e-10</p>
-<p>Reject the null hypothesis at alpha = 0.05. The mean jurisdiction-level incidence rate differed significantly between the two periods.</p>
-<p>Wilcoxon signed-rank test</p>
-<p>p = 5.46152e-10</p>
-<p>Reject the null under the test's assumptions. The paired differences also show a statistically significant rank-based shift.</p>
-<p>Exact sign test</p>
-<p>p = 4.61853e-14</p>
-<p>Reject the null of equally likely increases and decreases. Fifty jurisdictions decreased and one slightly increased.</p>
-<p>Shapiro-Wilk normality test</p>
-<p>p = 1.32835e-06</p>
-<p>Reject normality of the paired differences. Interpret the paired t-test and its confidence interval with this limitation in mind. The Wilcoxon and sign tests provide complementary evidence of a difference between the periods.</p>
+<h3 id="3.1-Descriptive-Comparison-of-the-Two-Periods">3.1 Descriptive Comparison of the Two Periods<a class="anchor-link" href="#3.1-Descriptive-Comparison-of-the-Two-Periods">¶</a></h3><p>The comparison dataset is used to summarize the direction and magnitude of changes across jurisdictions. The analysis calculates the mean of the 51 jurisdiction-level averages for each period and counts how many jurisdictions experienced a decrease, an increase, or no change.</p>
+<p>These summary measures provide an initial description of the observed differences but do not, by themselves, determine whether the mean paired difference is statistically significant. The next section evaluates the paired differences using inferential statistical tests.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=155b4f28">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b884b7a5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="3.2-Verifying-Period-Coverage-and-Examining-Jurisdiction-Level-Changes">3.2 Verifying Period Coverage and Examining Jurisdiction-Level Changes<a class="anchor-link" href="#3.2-Verifying-Period-Coverage-and-Examining-Jurisdiction-Level-Changes">¶</a></h3><p>Before conducting the inferential statistical analysis, the number of annual observations contributing to each jurisdiction's period averages is verified. Each jurisdiction should have four observations for the pre-pandemic period and two observations for the post-acute-pandemic period.</p>
+<p>The comparison dataset is also examined to identify the jurisdictions with the largest decreases and increases in mean reported incidence rates. These results provide additional descriptive detail about the variation in changes across jurisdictions.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=270ff1f6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [77]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Confirm the number of observations per jurisdiction in each period.</span>
@@ -9735,13 +9726,240 @@ Largest increases:
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c8c210fb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="4.-Inferential-Statistical-Analysis">4. Inferential Statistical Analysis<a class="anchor-link" href="#4.-Inferential-Statistical-Analysis">¶</a></h2><p>The descriptive comparison shows the direction and magnitude of changes in reported pertussis incidence. Still, inferential statistical tests are needed to evaluate whether the observed differences provide evidence of a systematic change across jurisdictions.</p>
+<p>The analysis uses a significance level of alpha = 0.05. The primary inferential method is a two-sided paired-samples t-test, which evaluates whether the mean paired difference between the two periods is statistically different from zero.</p>
+<p>The hypotheses are:</p>
+<ul>
+<li>Null Hypothesis (H_0): The population mean paired difference in reported incidence rates is zero (µ_0 = 0).</li>
+<li>Alternative Hypothesis (H_1): The population mean paired difference in reported incidence rates is not zero (µ_0 ≠ 0).</li>
+</ul>
+<p>The paired-samples t-test is appropriate because each jurisdiction contributes one mean rate for each period. The analysis therefore evaluates the differences within the same 51 jurisdictions rather than comparing independent groups.</p>
+<p>Before interpreting the t-test, the distribution of paired differences is evaluated using the Shapiro-Wilk test. The analysis also includes the Wilcoxon signed-rank test and exact sign test as supplementary methods. These tests provide additional evidence using different distributional assumptions and address whether the observed results are consistent across statistical approaches.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=291e6922">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="4.1-Evaluating-the-Distribution-of-Paired-Differences">4.1 Evaluating the Distribution of Paired Differences<a class="anchor-link" href="#4.1-Evaluating-the-Distribution-of-Paired-Differences">¶</a></h3><p>The Shapiro-Wilk test evaluates the null hypothesis that the paired differences are drawn from a normally distributed population. A p-value below the significance level of 0.05 indicates evidence against normality.</p>
+<p>The paired-samples t-test evaluates the mean difference, but its inferential reliability depends on the distribution of the paired differences. The Shapiro-Wilk result is therefore considered alongside the histogram and the observed distribution when interpreting the primary test.</p>
+<p>Because the paired differences depart from normality, the analysis also uses two supplementary nonparametric tests:</p>
+<ul>
+<li>Wilcoxon signed-rank test: Evaluates paired differences using their ranks and provides a supplementary assessment of the difference between periods. Its usual location-shift interpretation assumes a symmetric distribution of paired differences; that assumption was not formally tested in this analysis.</li>
+<li>Exact sign test: Evaluates whether positive and negative paired differences occur with equal probability. It focuses on the direction of change rather than the magnitude of the differences and makes fewer distributional assumptions.</li>
+</ul>
+<p>The three inferential tests use the same significance threshold of 0.05. Comparing their results provides a broader assessment of the evidence than relying on the paired-samples t-test alone.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54bbd43c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Paired differences: later-period mean minus pre-pandemic mean.</span>
+<span class="n">differences</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[</span><span class="s2">"Difference"</span><span class="p">]</span>
+
+<span class="c1"># 1. Test normality of the paired differences.</span>
+<span class="n">shapiro_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+
+<span class="c1"># 2. Paired t-test on the jurisdiction-level period means.</span>
+<span class="n">ttest_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_rel</span><span class="p">(</span>
+    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Post_Mean_Rate"</span><span class="p">],</span>
+    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Pre_Mean_Rate"</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Wilcoxon signed-rank test.</span>
+<span class="n">wilcoxon_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span>
+    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Post_Mean_Rate"</span><span class="p">],</span>
+    <span class="n">comparison</span><span class="p">[</span><span class="s2">"Pre_Mean_Rate"</span><span class="p">],</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s2">"two-sided"</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. Exact binomial sign test.</span>
+<span class="n">n_decreased</span> <span class="o">=</span> <span class="p">(</span><span class="n">differences</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">n_increased</span> <span class="o">=</span> <span class="p">(</span><span class="n">differences</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">sign_result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binomtest</span><span class="p">(</span>
+    <span class="n">n_decreased</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">n_decreased</span> <span class="o">+</span> <span class="n">n_increased</span><span class="p">,</span>
+    <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">alternative</span><span class="o">=</span><span class="s2">"two-sided"</span>
+<span class="p">)</span>
+
+<span class="c1"># 5. 95% confidence interval for the mean paired difference.</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+<span class="n">mean_diff</span> <span class="o">=</span> <span class="n">differences</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">sd_diff</span> <span class="o">=</span> <span class="n">differences</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">se_diff</span> <span class="o">=</span> <span class="n">sd_diff</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">critical_t</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ci_low</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">-</span> <span class="n">critical_t</span> <span class="o">*</span> <span class="n">se_diff</span>
+<span class="n">ci_high</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">+</span> <span class="n">critical_t</span> <span class="o">*</span> <span class="n">se_diff</span>
+
+<span class="c1"># 6. Cohen's dz effect size for paired observations.</span>
+<span class="n">cohens_dz</span> <span class="o">=</span> <span class="n">mean_diff</span> <span class="o">/</span> <span class="n">sd_diff</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"SHAPIRO-WILK NORMALITY TEST"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"W = </span><span class="si">{</span><span class="n">shapiro_result</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, "</span>
+      <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">shapiro_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">PAIRED T-TEST"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"t(</span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">ttest_result</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, "</span>
+      <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">ttest_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">WILCOXON SIGNED-RANK TEST"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Statistic = </span><span class="si">{</span><span class="n">wilcoxon_result</span><span class="o">.</span><span class="n">statistic</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, "</span>
+      <span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">wilcoxon_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">EXACT SIGN TEST"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Decreases = </span><span class="si">{</span><span class="n">n_decreased</span><span class="si">}</span><span class="s2">, increases = </span><span class="si">{</span><span class="n">n_increased</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">sign_result</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.6g</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">95% CONFIDENCE INTERVAL FOR MEAN PAIRED DIFFERENCE"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean difference = </span><span class="si">{</span><span class="n">mean_diff</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"95% CI = [</span><span class="si">{</span><span class="n">ci_low</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">ci_high</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">COHEN'S dz"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"d = </span><span class="si">{</span><span class="n">cohens_dz</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>SHAPIRO-WILK NORMALITY TEST
+W = 0.8112, p = 1.32835e-06
+
+PAIRED T-TEST
+t(50) = -8.1410, p = 1.00738e-10
+
+WILCOXON SIGNED-RANK TEST
+Statistic = 1.0000, p = 5.46152e-10
+
+EXACT SIGN TEST
+Decreases = 50, increases = 1
+p = 4.61853e-14
+
+95% CONFIDENCE INTERVAL FOR MEAN PAIRED DIFFERENCE
+Mean difference = -5.2232
+95% CI = [-6.5119, -3.9345]
+
+COHEN'S dz
+d = -1.1400
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1c06f481">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="4.2-Statistical-Results">4.2 Statistical Results<a class="anchor-link" href="#4.2-Statistical-Results">¶</a></h3><p>The statistical results include the test statistics, p-values, confidence interval, and effect size for the paired comparison. The paired-samples t-test provides the primary evaluation of the mean difference, while the Wilcoxon signed-rank test and exact sign test provide supplementary assessments.</p>
+<p>The 95% confidence interval estimates the range of plausible values for the population mean paired difference. Cohen's d_z expresses the mean paired difference relative to the standard deviation of the paired differences, providing a standardized measure of effect magnitude.</p>
+<p>The results are interpreted using both statistical significance and the estimated magnitude of the difference. A statistically significant result indicates evidence of a difference between the periods; it does not establish that the COVID-19 pandemic caused the observed change.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=373a6c7c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Measure</th>
+<th style="text-align:right">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Jurisdictions</td>
+<td style="text-align:right">51</td>
+</tr>
+<tr>
+<td style="text-align:left">Pre-pandemic mean incidence rate</td>
+<td style="text-align:right">6.680 per 100,000</td>
+</tr>
+<tr>
+<td style="text-align:left">Post-acute-pandemic mean incidence rate</td>
+<td style="text-align:right">1.457 per 100,000</td>
+</tr>
+<tr>
+<td style="text-align:left">Mean paired difference</td>
+<td style="text-align:right">−5.223 per 100,000</td>
+</tr>
+<tr>
+<td style="text-align:left">Decrease in unweighted means of jurisdiction-level rates</td>
+<td style="text-align:right">78.2%</td>
+</tr>
+<tr>
+<td style="text-align:left">95% CI for mean paired difference</td>
+<td style="text-align:right">[-6.512, -3.935]</td>
+</tr>
+<tr>
+<td style="text-align:left">Cohen's dz</td>
+<td style="text-align:right">-1.140</td>
+</tr>
+<tr>
+<td style="text-align:left">Jurisdictions with a decrease</td>
+<td style="text-align:right">50 of 51</td>
+</tr>
+<tr>
+<td style="text-align:left">Jurisdiction with an increase</td>
+<td style="text-align:right">Nevada</td>
+</tr>
+</tbody>
+</table>
+<p>Paired t-test</p>
+<p>p = 1.00738e-10</p>
+<p>Reject the null hypothesis at alpha = 0.05. The mean jurisdiction-level incidence rate differed significantly between the two periods.</p>
+<p>Wilcoxon signed-rank test</p>
+<p>p = 5.46152e-10</p>
+<p>Reject the null under the test's assumptions. The paired differences also show a statistically significant rank-based shift.</p>
+<p>Exact sign test</p>
+<p>p = 4.61853e-14</p>
+<p>Reject the null of equally likely increases and decreases. Fifty jurisdictions decreased and one slightly increased.</p>
+<p>Shapiro-Wilk normality test</p>
+<p>p = 1.32835e-06</p>
+<p>Reject normality of the paired differences. Interpret the paired t-test and its confidence interval with this limitation in mind. The Wilcoxon and sign tests provide complementary evidence of a difference between the periods.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2003150d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Visualizations">Visualizations<a class="anchor-link" href="#Visualizations">¶</a></h3>
+<h2 id="Visualizations">Visualizations<a class="anchor-link" href="#Visualizations">¶</a></h2>
 </div>
 </div>
 </div>
@@ -9750,7 +9968,7 @@ Largest increases:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [78]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -9760,7 +9978,7 @@ Largest increases:
         <span class="n">comparison</span><span class="p">[</span><span class="s2">"Pre_Mean_Rate"</span><span class="p">],</span>
         <span class="n">comparison</span><span class="p">[</span><span class="s2">"Post_Mean_Rate"</span><span class="p">]</span>
     <span class="p">],</span>
-    <span class="n">tick_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Pre-pandemic (2016-2019)'</span><span class="p">,</span> <span class="s1">'Later period (2022-2023)'</span><span class="p">]</span>
+    <span class="n">tick_labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Pre-pandemic (2016-2019)'</span><span class="p">,</span> <span class="s1">'Post-acute-pandemic (2022-2023)'</span><span class="p">]</span>
 <span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Pertussis Incidence Rates Before and After the Acute Pandemic Period"</span><span class="p">)</span>
@@ -9780,7 +9998,7 @@ Largest increases:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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0k0rXry4r3nz5m47VatWzffll18m+3tmzpzp1v3yyy8HTdd21fZT/hMqpfS8/fbbvosvvtgtV2nQ77nqqqv833/nnXfcd71tedppp7n5t27d6p9Hx7++r+3QrFkz9z8WKlTIt2fPHt/x48fdsZovXz63fC0jb968vttuu8136NChZH+v/mNvG19yySXu+Nd+/NJLLwXNp8+0b2j7ad/Vf1OgQAG3r/z+++9B8/7999/uP9V/q+8oTUqfjg3tY5E4duyYr3Tp0r4ePXq49wMHDvQVLlw46Pd88MEHvssuu8xtF/0v3u9QflCuXDm3/sD9bffu3f7vvvjii255+r36LfrN//rXv9z29Nx6662+M8880zdv3jxf9erVXZ6j7R6Ojsfk1ukta8mSJW6baZ1FihTxlS9f3rd27dqTlhdJ+pKjY8vLX1577TWXrm3btp00319//eX2E+UP+l+175QsWdL//2t7a/s+9thjJ31X+7oeon1Qv1f/b6lSpfy/P/C8vG/fPrcdcufO7TvnnHN85513nttn//Of/6T4e7QfnXXWWSdN79Kli0ufjrXRo0f713vppZe6Y1LHwZNPPhn0HZ2vlA9/9913Ll/Q9tWxpPl/+eWXoHn1+zt16uTy17p167r9oHfv3m57aL2B+6PyiKefftrlnVq+zk/6fR07dnS/PXT9M2bMcNtc5wWls0OHDm6/nz59uluPpuv7TZs29eePnjvuuMPtT4G89etcozxe/43m0bxHjhxJctv26dPH/Rad5wO9++67QXnh0qVLXd6sbaVtpnXoP5k9e7b/O1999ZX7zsSJE33XXHON+4+VH+r/Wbx4sfvsk08+CVrPlClTXN6n+fSbla/o/w49LsaNG+fWrXxB+6nmmT9/vlvmCy+84MsoUQWvOhHp4A+lafrhWSl41QlP03Xga4dXpqog/qeffvLPowBF83z66adBgY8O2GHDhvl3+NWrV7vXOkC1I4dKTfA6fPhwX/bs2X2rVq3yTzt8+LB/fZHOEy4YjPR7qQle69SpExSkedss8ADTvDoIdaAqGPXs2rXL/Q9JpXf//v3uhKb/xgvilAkpM1OmEhi8pvY/jFW6I11vpNtVlFHreNSJOSXr1q1zJ0udEDxjx4516/7+++9Pml8ZqE6QOgl6Jw49K/hWWryThDJ8ZYT//PNP0H48fvz4iILXe+65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Yt9gS4MT9OjRw4oXL26NGjWy888/373WNH0GAAAAxE3w+uCDD9q0adNs7Nixrr/XLVu2uNdffPGF+wwAAACIm94GSpQo4QLV+vXrB01funSpXXXVVbZjxw6LJ/Q2AAAAkIUHKdBCww1GoLHc9RkAAACQHqIKXuvVq2dDhw4N6sNVr5999lmrW7duLNMHAAAApK23AQWprVq1sokTJ1rDhg3dtEWLFrm6r6oLCwAAAMRNyetFF13kusi67rrrbN++fbZ//35r3769m6bPAAAAgLhpsJVoaLAFAACQhYeHlUOHDtm4ceNszZo17n3NmjWtU6dOljdv3mgXCQAAAMS+5HXZsmXWunVrNyBBrVq13LRVq1a5wHXq1Kl23nnnWTyh5BUAACALd5XVvXt3u/LKK10DrTlz5riHXqsRlz4DAAAA4qbkVSWsGlmrWLFiQdN37txp5cuXd1UK4gklrwAAAFm45FUDFPzxxx8nTde0cIMXAAAAALEQVfDat29f1zjryy+/tD179tju3bvd686dO1u/fv3s2LFj/gcAAACQqdUGsmXLFvG88dATF9UGAAAAsnBXWTNnzkxL2gAAAICoRBW8tmjRIrq1AQAAABld5xUAAADIDASvAAAASBhRDw8bC6qQO3LkSJs3b57lzJnTLrroIrvzzjstT548/nmef/55+/TTT4O+V7FiRRs1alQmpBgAAABZMng9fvy4nXvuudahQwe78cYb7eDBg/bEE0/YJ598Yl999ZXlyJHDzbdu3TrXY8Hjjz/u/27+/PkzK9kAAABItOB148aNNn/+fNuxY4cLLEuWLGlNmjSxChUqRLwMBac//PCD6xLBU6tWLatXr54tXrzYGjdu7J9evHhxGokBAAAgdcHrvn37rEuXLjZhwgT/MLHiDQfbvn17e/vtt61gwYIRLS8wcJXChQu7Z5XCBlq6dKldddVVbv6mTZu6qgWqZgAAAICsJVUNtnr37m0rV660yZMnu0BWQaYeej1p0iT3meaJ1n//+18rUaKEnX/++f5pp512mrVr187uuusua9asmT3zzDN22WWX2YkTJ5JczpEjR1xHt4EPAAAAZLERtlQyumDBAqtevXrYz9esWWMXXHCBGzI2tYYPH2733nuvffbZZ9aqVSv/dAXH+fLl87//6aefrGbNmjZ27Fjr2LFj2GUNGjQoqI6sJ6URGwAAABDfI2ylquT12LFjQYFkKDWkOnr0aOpSamajR4+2nj172pgxY4ICVwld39lnn+3q1i5fvjzJ5Q0YMMD9cO+xefPmVKcJAAAA8SdVwesVV1xht956q61ateqkz1avXm233HLLScFnSt577z1Xh/Xdd9+1Tp06RdRLwe7du111gqSoqy1F7IEPAAAAZLHg9ZVXXrEDBw5Y7dq1Xd1U9Q6gh/dat/g1T6Tef/9969q1qyt57dy580mfqxT3xRdfdCW+onqu//73v10dW9WDBQAAQNaSqib7pUqVsoULF9qsWbPcwALbt29309VVluq6Nm/e3LJlyxbRsnQ7X6W4qtvwxhtvuIenX79+dvXVV7vutLZs2WKlS5e2s846y7Zu3Wq5cuWyjz/+2AXQAAAAyFpS1WArllSq+t1334X9TPVaFSh7VKKrxmBFihRxQaw3gEGsKwADAAAgc0Qar0UVvMZikIKMRPAKAAAQ3yKN1zJ1kAIAAAAgYQcpAAAAABJikIL0RLUBAACA+JZQgxQAAAAACTFIAQAAAJAQgxQAAAAACTFIAQAAAJAwgxRkJBpsAQAAZMF+XhN1kAIAAACcGhikAAAAAAmDQQoAAACQMBikAAAAAJmOQQoAAABwymGQAgAAACQMBikAAABAwmCQAgAAACQMBikAAADAqdlgKyW9e/e2zz77LJaLBAAAANIneJ00aZJ17NjRLrvsslguFgAAAIh+eNjkho09ePCgffPNN7FcLAAAABD7klfJly+ftW7dOtaLBQAAAKIreVUJ6/z5823Hjh3m8/msZMmS1qRJE6tQoQKbFAAAAPERvO7bt8+6dOliEyZMcO/z5s3rng8dOuSe27dvb2+//bYVLFgwPdIKAACALC57ansTWLlypU2ePNkFsqrfqodeq7GWPtM8AAAAQKb381q4cGFbsGCBVa9ePezna9assQsuuMD27NljidhvGAAAAE6hfl6PHTvmGmQlJX/+/Hb06NHUpRQAAACIUKqC1yuuuMJuvfVWW7Vq1UmfrV692m655RZr1apVahYJAAAApE/w+sorr9iBAwesdu3aVqJECatVq5Z7eK9V/1XzAAAAAJne20CpUqVs4cKFNmvWLJs3b55t377dTVdXWarr2rx5c8uWLVu6JBQAAABIVYOtREWDLQAAgFMjXmOQAgAAACQMBikAAABAwmCQAgAAACQMBikAAABApmOQAgAAAJxyGKQAAAAACYNBCgAAAJAwGKQAAAAACYNBCgAAAHBqNtiKhDdkLAAAABBrMQ9eS5UqFetFAgAAAOkTvAIAAABx0WCrevXq6ZYQAAAAIKbB6+bNm61bt25WoECBJOd56qmnUrNIAAAAIH2C1+uvv95q1arlAtikELwCAAAgLuq83n333TZy5Mhk5zn//PPTmiYAAAAgLPp5BQAAQNbt5xUAAABILwSvAAAASBgErwAAAEgYcRG8HjhwwI4cOZLsPP/884/t2rXLfD5fhqULAAAAp0DwOnfu3Jis/P3337e6deu6IWULFy7seipYvHhx0DwnTpywPn36uM8rVKhgZcuWtU8++SQm6wcAAEAWCF5btGiR5hUfP37cvvjiC3vnnXdcq7K9e/faueeea1deeaXt3r3bP99zzz1no0aNsnnz5rlWaP3797dOnTrZmjVr0pwGAAAAZIHg9ayzzrL169enacU5cuSwMWPGuIA1W7ZslidPHhs0aJD9+eefQaWvr776qnXt2tXOO+88y549u913331Wvnx5GzFiRJrWDwAAgCwSvD722GN222232ZIlS+zgwYN27NixoEe0NmzY4J5Llizpnv/44w/77bff7MILLwya76KLLrJFixZFvR4AAABkgeFhPbfeeqt7btiwYdjPo2lUpSBYpaotW7Z0pbGyc+dO91ysWLGgefVe1QiSosZfgQ3AVN0AAAAAWTR4nTlzZkwToZ4E2rdv7wLYadOm+aermoCEluYePXrUVTtIypAhQ+zxxx+PaRoBAACQoMFrLBpshQau69ats2+//dZfZUDKlCnjnrdv3x70nR07dvg/C2fAgAH2wAMPBJW8litXLmZpBgAAQIL186rS0IULF9rYsWP909RrQGqoBLVDhw62evVqF7iqG6xAGtdWDbW++uqroPXOmDHDmjVrluRy1fhL3w18AAAAIIsGr1u2bLEGDRpY06ZN7YYbbvBPv+WWW2zq1KkRLUP9t3bu3NkWLFjgeh3wlquHqg94/v3vf9vo0aNt+PDhtmLFCuvSpYubfvfdd0eTdAAAACSwbL4oWleptFSlmerGKm/evP4GWt99953rhzWSQQz27NljderUCfvZs88+a9dff73//Ycffmgvvviiqy6g7wwePNhq1qwZcXpVbaBQoUKuZJhSWAAAgPgTabwWVfBavHhxd6tfz+qj1VvEvn373LTDhw9bPCF4BQAAiG+RxmtRVRs4dOiQ5cz5f229FLx61LAqX7580SwSAAAASFFUwasaS3kjXHnBqwLaBx980C6++OJoFgkkPA15rIaHasSoZ70HAABx0FXW0KFDrXnz5vbFF1+4KgOqnzp79mzXe4DqvQJZzcSJE61Pnz62ceNG/7QKFSrYc889Z+3atcvUtAEAYFm95FWNpdTyXwHslVdeaXv37nXDxf7www9WtWrV2KcSiPPAVX0VqzHh/PnzXd1vPeu9putzAAAQG1E12Eo0NNhCelHVgCpVqrhAddKkSf5R4bzu4Nq2bWsrV6609evXJzsqHAAAWd3fETbYiqragFfHddy4cbZmzRp/aWynTp1c11lAVjFnzhxXVUD1XAMDV9F7jfZ2wQUXuPliOTIdAABZVVTVBpYtW2aVK1d2dfx0e1QPDceqEqjly5fHPpVAnNq2bZt7rl27dtjPvenefAAAIBOC1+7du7u6rhoNSyVKeuh1q1at3GdAVlGqVCn3rKoB4XjTvfkAAEAm1HlV1YDNmzdbsWLFgqbv3LnTypcv76oUxBPqvCK9UOcVAIAEGKSgUqVK9scff5w0XdP0GZBVqBGWusOaMmWKa5wV2NuA3mu6upajsRYAALERVfDat29f1zjryy+/tD179tju3bvd686dO1u/fv3s2LFj/gdwqlM/rhMmTLAff/zRNc7S1aKeVWVA0+nnFQCATK42EDgkbErioScuqg0go6oQqP63GmepjmvTpk0pcQUAIB66ypo5c2Y0XwNOaaoaQHdYAACkr6iCV07QAAAAiOs6r/fff7/t2rUrxfnU44DmBbJitYFvv/3WDVigZ70HAACZ2GBLPQncfPPNNn78ePv5559t//79rmW1hr784IMPXIMtzRMP9VyBjDRx4kQ3SEfLli3thhtucM96r+kAACATgtcXXnjBlixZYgULFrR77rnHnZj1WhVqq1WrZr169XL9vmr0rWHDhsUwiUB8U4Davn17q1OnTlBXWXqv6QSwAABkcm8D+sratWvdQAXqeaBs2bJWvXr1VPVCkJHobQDphUEKAABIgN4GFKTWqFHDPYCsTF1jbdy40dVzzZ49+EaG3g8YMMD1+ar5aOgIAEAmDVIA4P+oT1epXbt22E3iTffmAwAAaUPwCqSBBiMQjaYVjjfdmw8AAKQNwSuQBhpFq0KFCjZ48GA7ceJE0Gd6P2TIEKtYsaKbDwAApB3BK5DGUbWee+45mzJlirVt2zaotwG91/ShQ4cyTCwAAJkdvB47dswWLlzoGqp41DoMyGratWtnEyZMsB9//NE1zlILST2ryoCm63MAAJCJXWVt2bLFWrdubatXr7ajR4/6ByVo06aN3XnnnXb11VdbPKGrLGRUt1nqVUCNs1THVVUFVDILAABiF69FFbx26NDBLfTVV1+1vHnz+oPX7777zvr3729z5861eELwCgAAkIX7edW47Sp1Pe2004Kmn3POOW4ULgAAACBu6rweOnTIcub8v7g3cFSt7du3W758+WKXOgAAACCtwWuzZs1sxIgRQcGrAtoHH3zQLr744mgWCQAAAKQoqmoD6vqnefPm9sUXX7j6rtdff73Nnj3bNd5SvVcAAAAgbkpea9asaStWrHAB7JVXXml79+612267zX744QerWrVq7FMJAAAARNvbwE033WRjxoxJ9WeZhd4GAAAAsnBXWarnGu5rmqZ+LUOHycxsBK8AAABZsKus/fv3h30tClhV37VkyZLRpBcAAABIUaqC14IFC4Z97cmePbsNHjw4NYsEAAAA0id4nT9/vntu0qSJ/7UnV65cVr58eStevHhqFgkAAACkT/DauHFj97x+/XqrUqVKar4KAAAAZE5XWQSuAAAASJhBCuSjjz5yj02bNtmxY8eCPluyZEks0gYAAACkveT1xRdftB49elilSpVs4cKF1rp1aytRooQtXbrUGjRoEM0iAQAAgBRF1c/r2WefbSNGjHAjbAX2+aphYzVM7KeffmrxhH5eAQAAsvAgBepZ4MCBA5Y7d2477bTTbNeuXVagQAE3TKx6HNDK4wnBKwAAQHyLNF6LqtqA6rgqcBUFq6ouINu2bXMjbAEAAABx1WDLc8stt1jnzp3tiiuusG+++cbatGkTm5QBAAAAsQheN2/e7H/98MMPu4EJNGjBPffcY717945mkQAAAECKoqrzmpzjx4/HXdUB6rwCAABk4TqvSZk8ebLVrl07losEAAAAog9e3377bbvuuutc365jxoxx01atWmVNmza1du3aWcOGDVO7SAAAACD2wevzzz9v3bp1sx07drhusdRYa9CgQda4cWPLmzevff/99/buu++mZpEAAABA+jTY0sAE7733nt1www3uvUpeb775ZnvsscdcEAsAAADETYMtDUiwZ88eV8oqhw4dsnz58rkKtgULFrR4RYMtAACA+BZpvJaqktcjR474A1fxXqclcNWAB1OmTLG1a9e6El0NehBo+vTprjpCIHXNdccdd0S9TgAAAGSRfl779u2b4rShQ4dGtKzx48dbv379rHLlyjZz5kxXdzY0eP3kk0/s22+/tbZt2waVAAMAACDrSVXwWqtWLZs2bVqK0yINXkuVKmXfffede12uXLkk51P3W08//XRqkgoAAICsHryuXLkypitX91qyZcuWZOfbunWrvfTSS64eRJMmTaxatWoxTQcQqwE65syZY9u2bXMXZtq/423ADgAAEl1MBylIL/v27XN1YidOnGh16tSxJ598MsW6uar0G/gA0pP2zSpVqljLli1d3W09672mAwCALBS89ujRw3788Ud77bXX3AheH3zwgT366KM2b968JL8zZMgQV0rrPZKrkgCklQLU9u3buwur+fPnu4stPeu9phPAAgCQSV1lpRdVG1CAqUZbLVq0SHF+3ZJVUPvII48kWfKqh0clr1p+Sl0vANFUFVAJqwLVSZMmWfbs//968MSJE66hoarbrF+/nioEAADEoKusuC95DUf1CPfv35/k53ny5HE/OvABpAfVcd24caMNHDgwKHAVvR8wYID9+uuvbj4AAJB22eO9VGvVqlUn9fuqBlzNmzfPtHQBHjXO8nrECMeb7s0HAAAyuJ9Xz+rVq91Qsb/88ot9+OGH/n5br7nmmqCBDJKjuqxTp071N6hSfdYFCxbYRRdd5B6q0XDrrbe6vl/VJdemTZvculRl4Morr4w26UDMqAqLqGqA+ilOqocObz4AAJAJJa8zZsywBg0auFJRBayeFStW2CuvvBLxcv755x/bu3evqxvYv39/K1q0qHt/+PBh93nOnDlt0aJF1rVrVzcwwfnnn+/ep2YdQHpSd1gVKlSwwYMHu/04kN6r8WDFihX93cIBAIBMaLClILJnz5520003WbZs2VwJqaxZs8aVvG7YsMESsQIwkJbeBlq3bu3quKqqgEpcFbhq6OMJEyZYu3bt2LgAAMQgXosqeM2fP7/t3LnT8uXL5xqleCVOBw4csCJFirgS1XhC8IqMCGD79OnjGm95VOKq0eYIXAEAiF28FlWd14IFC7oG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1QaaNm3qGlHdf//9VqVKFddVVqD27dvHJHFqmFW6dGlbuHCh63HAM3/+fLvkkkuS/J5KZvUAAADAqSWq4PW5555zz88880zYz2MVvEr37t3ttddesy5dulilSpXs3XfftXXr1tnYsWNjtg4AAACcwsHr3r17Y7LyyZMn28MPP+yv23r77be7ARDuuece95CBAwfaxo0brXr16q6qwMGDB+3tt9+28847LyZpAAAAQBYZpCCtmjdv7notCFWiRAn/65w5c7pgVaW9u3btsvLly1MlAAAAIItKVfDat2/fiOYbOnRoRPNphKxIR8lSf7Lh+pQFAABA1pGq4FVDtcYyeAUAAADSLXhduXJlqhYOAAAAZHo/rwAAAEBmIHgFAABAwiB4BQAAQMIgeAUAAEDCIHgFAADAqdfbwBtvvBHxQu+6665o0wMAAACkPXgdNmyY//WJEyds/fr1li1bNjvzzDPdtB07dpjP57OqVasSvAIAACBzg9e1a9f6Xz/55JM2Z84ce/PNN91wrbJp0ybr1q2bNWvWLH1SCgAAgCwvqjqvo0aNsrfeessfuIpea5o+AwAAAOImeP39999d1YFQmrZ169ZYpAsAAACITfDavHlz69Kli/3yyy/+aXp9++23W8uWLaNZJAAAAJA+wevIkSPt8OHDVrlyZTvjjDOsaNGi7vXRo0ddPVgAAAAgUxtsBSpbtqzNnTvXFi9ebKtXr3bTatasaQ0bNox1+gAAAIC0Ba8eBasErAAAAIj7EbZU4jpgwADr1KmTf9r48ePt0KFDsUobAAAAkPaS1xkzZtg111xjl156qX322Wf24YcfuukrVqyw3377zfr16xfNYoEMoQE29u3bly7LXrNmTdBzrBUsWNANBAIAQFaVzadhsVLp/PPPt549e9pNN93kRtnyFqETtoLaDRs2WDz5+++/rVChQvbXX3/Z6aefntnJQSYHrtWqVUvo/2DdunUEsACAU06k8VpUJa8rV660du3audcKXgMHKtBIW0C88kpcx4wZYzVq1Ij58lVtZuPGjVahQgXLmzdvTJeti0NdMKZXqTEAAIkgZ7S3Lrdt2+a6xwoMXhctWmSlS5eOZfqAdKHAtV69eumy7AsvvDBdlgsAAKJssNWxY0fr3bu37d692z+y1qxZs6xbt27WuXNntisAAADiJ3gdMmSIC1iLFy/unlUS26JFC6tevboNGjQo9qkEAAAAoq02kD9/fps6dap9//33tmTJEhfA6hYsfb4CAAAg7oLXAgUK2P79+61u3bruEe4zAAAAIC6qDRw4cCDs9KNHj7oHAAAAkOklr+peKNxrUdWBhQsX0v8kAAAA4iN47du3b9jXkitXLte35WuvvRa71AEAAADRBq/bt293z7Vr13YDFQAAAABxX+e1VatWsU8JAAAAkB7B6yuvvGL//PNPNF8FAAAAMjZ4bdSokX377bfRrxUAAADIqH5eL730UjcM7D333GM1a9a03LlzB33evn37aBYLAAAAxD54ff755/3VB8IheAUAAEDcBK979+6NfUoAAACA9KjzCgAAACRMyascOXLEPvroI1uzZo35fD5X97VDhw6WJ0+e2KYQAAAASEvJ67p166xGjRp211132fTp0+2rr75yrzVNnwEAAABxE7zed9991qBBA9u6dastWbLEFi9e7F5rWq9evWKfSgAAACDaagOzZ8+2X375xQoVKuSfptcvvfSSVa5cmQ0LAACA+Cl5zZUrlx08ePCk6QcOHHCfAQAAAHETvF511VV222232dq1a/3T1HDrlltucZ8BAAAAcRO8qnqASljVQOv00093D/U2cNppp9mLL74Y+1QCAAAA0dZ5LV68uM2YMcM11lq1apVly5bNBa9qsAUAAE4Nx48ftzlz5ti2bdusVKlS1rRpU8uRI0dmJwtZXNT9vIqCVQJWAABOPRMnTrQ+ffrYxo0b/dMqVKhgzz33nLVr1y5T04asLeoRtr799ltr06aNVatWzT3atm1rs2bNim3qAABApgSu7du3t9q1a9urr75qb7/9tnvWe03X50BClbyOGDHCevToYdddd511797dTVNfr5deeqm9/vrr1rVr11inE4iZkgWyWd6968x+T6zRkZVmpR0A0ruqgEpc69evbytXrrQpU6YElbxqet++fV0BFlUIkDDB6xNPPOGuwm6++eag6e+++6498sgjBK+Ia93r57Yas7ubzbaEUuN/aQeA9KQ6rqoq8Ntvv1nr1q1t7NixrsRVgezgwYNdMKth4TVfixYt+DOQGMHrX3/95a64QqnqQM+ePWORLiDdDF/6j3V69B2rUb16Qm3lNWvX2vDnbrB/ZXZCAJzSNGKmtGrVyiZNmmTZs//fXarGjRu79wpov/jiC/98QEIE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Bg0ieAVwyiBfQ7yJqreBmjVr2gsvvGBXXHGFa73vLUIlTqtWrXIlsgAAAEBcBK+5c+d2XWecdtpp7ops9+7dlj9/fvdcqVIl27t3b8wTCgAAAERVbeDo0aMucBV1QfXjjz+61wpe1acqkNG07y1YsCBD1rVz505btGhRmpejvmA3bNgQkzRlRWw/4P9T25O5c+f6+2CPlsqztBxvcJ+kqD/3xYsX8xdEie2Xyb0NdO7c2a6//nrr3bu3tW7d2q688sq0LhIxsnLlSpcJ6aFM5o8//jhlt+3s2bOtVatWGbIu1fP+17/+leYTjard/PzzzycFxt9//32ydy8OHTpkS5cuTTbwPX78uC1cuNDWrFmTbDq2bdvm1nfkyJGI056RadyzZ48tW7bMtmzZctJnf/31lzVt2tQ9A8rntG9GS4UyWobabyQiHY86HtavX5+m5Sgv0HJUBTA5AwYMsA8++CBomrbd8uXLbevWrckGx1r2Dz/8cFJj79QsJ5J5ov1erNKofUrnYf0nocvRXWvFTjNnzkxV+vE/vij8+OOP/tdHjx71Pf300742bdr4+vfv7/vrr7+iWSTSwSWXXOIrXry478ILL/Q1aNDAlzdvXl+rVq18e/bsOeW29yeffOIrVKhQhqxr+vTpvn/9619pWsYbb7zhO//88/3vFyxY4GvWrJn7v8477zz3X3Xp0sX3zz//BH3vo48+cr+zatWqvtNPP9130UUX+f7880//5wcPHvQ9/vjjvvLly/sKFizojstwdu7c6bvqqqvcPNo3zjrrLN/EiROTTXNGplHLvOOOO3z58uVz6ypSpIivbdu27ruB2rVr53v44YeTTTdOfToP6XT23nvvRb2Mbdu2uWUEnt8Syd69e11ev379+jQt59ChQ247zJ8/P8l5fv75Z3f879ixw73fvn277/bbb3fHvY7XokWL+po0aeLmC/TTTz/5qlev7itRooSvXLlyvjJlyvjmzZvn/zyS5US6rlAZmUYZNGiQW8a5557rK1u2rFvOZ599FjTPiBEjfPXq1Us23QgvquAViRO83njjjf73v/32m69YsWK+Hj16uOBgzpw5vgMHDrjAYuHChe6g9Gj6kiVLfL/88ovvxIkTEWX8mj/wtTLB0MxV69RDn+t9csv5448/fN9//71LSzj6PT/88IPv8OHDSQavyf2OwHUpE166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"/>
+<img alt="No description has been provided for this image" class="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAq8AAAHiCAYAAADGTyWyAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjExLjIsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvgI3uAAAAAAlwSFlzAAAPYQAAD2EBqD+naQAAb5NJREFUeJzt3QeYE1X79/Gb3qUISBdpUlU6qDQrKj4g0qwogtgQFFDBho8KFlTsgIiiqIiIDRRURIr0JtIEVKQICAJKl5L3+p3/M3mTkN3NZrO7Cfv9XFeu3UwmM2cmM2fuOXNKNp/P5zMAAAAgAWTP7AQAAAAAkSJ4BQAAQMIgeAUAAEDCIHgFAABAwiB4BQAAQMIgeAUAAEDCIHgFAABAwiB4BQAAQMIgeAUAAEDCyJnaL/zzzz82adIkmzlzpm3evNlNK1++vDVv3tzatGljhQoVSo90AgAAAJGXvO7atcv69OljZcuWtbvvvtt+++03K1asmHv9+uuvdtddd1mZMmXsnnvusd27d7NrAQAAkHklrzVr1rTLLrvMpk6dak2bNrVs2bIFfe7z+WzOnDk2atQoq1Gjhm3bti32qQUAAECWls2nqDMC69ats6pVq1qs5wUAAABiHrwCAAAACddgy6OYd+vWra4ubKjatWunNV0AAABAbILX+fPn2zXXXOMabYVDYS4AAADiptpAvXr1rG7dutavXz8rWrToCZ+XKlUqVukDAAAA0ha8FihQwFUZOOWUU1L7VQAAACBjR9iqXLmy7dixI/q1AgAAABkVvN5///3Wo0cPW716tR05csSOHj0a9AIAAADiptpA6AAFoWiwdXL59ttvrVy5cla9enU72dI7e/ZsVw1GdbiRdWiY61WrVtmePXtc7yg6XrKKNWvW2KZNm+ziiy+O+bL37dvn9qt6odFgNaeffrrFk59++sl27txprVq1yuykIAbWr1/vXpdccollzx5VWVyarFy50v7888+EOp7++ecfN6CU2i6VLFkyJsv8999/7bvvvsvQcz6q4PX7779P9vOWLVvayUbVJBYvXux/nyNHDjc0bq1atSxv3rwxXdfXX3/tDoAzzzzT4kHBggWte/fuNmzYsDQvS8eO9leTJk0sHtKrAFevTz/91BKZ9uuhQ4f8N5f58uVzA4WULl066mVqlLxly5bZeeedZ4UKFbKMpOBnwYIFQdMKFy5sFStWTNM2yaRJk+y6665z+6d48eJuSOtLL73UsgoN8z18+HD/8RIJDQG+du1aq1SpklWrVi3sPNOmTbNOnTpZhQoV7LTTTrPbbrvNzav2ERdeeKFlFAXPSa3zpptusilTpmToCJB//PGHLV++3A2fftZZZ2VYfqDrU6zXN3fuXPv777/9+Yzych0T5cuXt8wwaNAge+yxx+zgwYMxvw5HQtcZ5SexOJ5+/vnnoB6ccuXK5Y4ZxQGxDMwXLVpkDRs2tE8++cTatWsXk2Vq+5Uvv/DCCy5/iduusk7G4DSS7sGuvPJKV0pTtmxZV11Cd106aXTyxPIHu/zyy93yhg4davFAJTS6o4qF66+/3pVyzZs3zxIhvYlC+1WlXt5Nwfbt290FUxfwd955J6oeQHQBVJd4S5cutXPOOccyktKu4aj1OyoYkt27d7u0KP8ZOXKkC2SjoWC1devW9uGHH8Y41Sevnj17uicauuiF3lR41PuMjr/Jkyf7pymAHTdunCvhzigvvfRShq8zOQ8++KC9/fbbLt/7/fffM6SEUPmBzpOxY8fGdLm9evVy170WLVr4C3V+/PFHO/fcc+3dd9+Nu5L29KZ44MCBAzFZ1htvvGHPPfecNW/e3BU+7N+/3xUelChRwn0WqxvAwoULu5t13WBmyUEKRJmDhoJV4a3usIsUKWInu759+7q7dzl8+LDdcMMN7mKoRmwKbk9GukNLJImW3lhRCbJKlTx6jKNAvlu3bvbll19aIrrjjjvsrrvuCiqdaNSokd144402c+bMVC9PpY2//PKLde3aNcYpPXmpNEilqrp46q9uLEJL9HQNUIlnVirBjvQR7UcffeTfdzo/VTiRyBT0BOYzKohQMHv11Ve7Ur2sJD1KGceMGeO/MVeJpvZt27ZtXfWIWHRDWrVq1aDfL0sFr7oAKIhT6YfXQCtnzpx26623ujuHzCi+zwx58uSxhx9+2GVOEydODApeVfKlumUq+lepVf78+YMy+qlTp7qAVweSDlA1ftOduS6s+nzDhg3+A0z1UlQ/RaW8M2bMcFUVQh/TzJo1yz3aDS0hU30cLTN37twuuFH9zlApzZNUHdJIlp2S0H2hx30KULS+KlWqJPk91VvTPtM6tT/0W6SU3uPHj7uSOx2/Z599tqtekJzU/IaxSHck602NCy64wJWIKJ06dnQ3L3rsp8d/gY/+dPMZ+DheAYtKVET1o7zHYkpPYAaq/aDt0ec6TrVNoXXiNY9ucrWP9BhMjxlV7SYaeoR2/vnnu6o14SSXHj32VkmG5tFjcJ1fKgVTfbnAulsKzvbu3evSGVqStGXLFldvslmzZu43XLFihXssrH2tPFBUEqNl6DjTMRjJBUdpVqmcKE0qCFCpTuhvr+BAT32aNm3qSmZ0PGseHc9J7VNd9DZv3uz2XTRVLt58802Xt4wfP95q1qzpSoFefvll/+falyqN077buHGjP9869dRTXd1aXSMCL5baV8ozwu1znU9eSXu4eqqaV9t87Ngxd2yHUtWuSNbpFT4sWbLE7W/VeQ/9PNL0Jef99993x8Ho0aOtTZs2bt8lF7yqQEj7Uud+4O+vvEvHvPKW0PxFTwWlcePG/nxJ26bzzdsHKm3TMRNaNUfrEh0/0XZ9qdJ2bZuugTqGtb90XRDtWy1X2xKa3+pc1D7VuaR9pN9C263fwjuXQum6qJd+h5SqKmiZ+t10nih/0xPTpNbvlXKq33od4x6dy5quvFN5X2jellydV+0HHbtahpap8yG1lHfo5v3uu+92v2vgTfe6devcea28QjeTgef/X3/9ZQsXLnRPSrRe5X36bXQM6FhKqs6rziulWU+5dC3TtS0cbZN+L+2XTGsv4otCr169fJUqVfJ99NFHvk2bNvk2b97s/j/jjDPcZyejL774QnWDfW+99VbQ9I0bN7rpV199tXu/Y8cOX7t27Xx58uTx1a9f31erVi1foUKFfK+++qr/O0eOHHHfefDBB30PPPCA78wzz3SvIUOG+C699FJftmzZfBUrVnT/6/XII4+47/3222/ue6+//voJ6atcubI/Dd46brjhBpeORo0a+Zo0aeIrWbKkW19q5pECBQr4evfunervhVO2bFlf48aNw+6LQYMG+WrUqOFr0KCBL0eOHL7rrrvOd/z48aDv//nnn7727dv7cuXK5atdu7abt1y5cr533303yfTK8uXLfVWrVvWdcsopvqZNm7r9NWXKFLff27ZtGzRvan/DWKU7kvVGul89V1xxhUvnX3/95Z+2evVq/7GlV7169Xw5c+b0tWnTxrd//343z4cffug7++yz3XfPPfdc/7zff/+9fznffvutr0qVKr5TTz3Vd95557ljoGbNmr6ffvrJP8+KFSvctBIlSvhatGjh9lO1atV8X3/9dbLbM336dLful19+OWi69qv2n/KfUCmlZ/To0b4LLrjALVdp0PZcfvnl/u+//fbb7rvevsybN6+bf8uWLf55dP7r+9oPzZs3d79j4cKFfbt37/YdO3bMnav58+d3y9cy8uXL57vpppt8Bw8eTHZ79Rt7+/jCCy9057+O45deeiloPn2mY0P7T8eufpuCBQu6Y+WPP/4Imveff/5xv6l+W31HaVL6dG7oGIvE0aNHfWXKlPHdeeed7v3AgQN9RYoUCdqe999/33fxxRe7/aLfxdsO5Qfly5d36w883nbt2uX/7osvvuiWp+3Vtmib//Of/7j96enatavvtNNO882ZM8dXvXp1l+dov4ej8zG5dXrLWrRokdtnWmfRokV9FSpU8K1Zs+aE5UWSvuTo3PLyl9dee82la+vWrSfM9/fff7vjRPmDflcdO6VKlfL//trf2r+PPvroCd/Vsa6X6BjU9ur3LV26tH/7A6/Le/fudfshd+7cvrPOOst3zjnnuGP2v//9b4rbo+Po9NNPP2F6t27dXPp0ro0ZM8a/3osuusidkzoPnnjiiaDv6HqlfPiHH35w+YL2r84lzf/rr78Gzavt79y5s8tf69at646DPn36uP2h9QYej8ojnnrqKZd3avm6Pmn7OnXq5LY9dP3Tpk1z+1zXBaWzY8eO7rifOnWqW4+m6/vNmjXz54+eW265xR1Pgbz161qjPF6/jebRvIcPH05y3/bt29dti67zgd55552gvHDx4sUub9a+0j7TOvSbzJw50/+db775xn1n4sSJviuvvNL9xsoP9fssXLjQffbJJ58ErWfSpEku79N82mblK/q9Q8+LcePGuXUrX9Bxqnnmzp3rlvnCCy/4MkpUwasuRDr5Q2maNjwrBa+64Gm6Tnwd8MpUFcT//PPP/nkUoGiezz//PCjw0Qk7bNgw/wG/atUq979OUB3IoVITvI4YMcKXPXt238qVK/3TDh065F9fpPOECwYj/V5qgtc6deoEBWnePgs8wTSvTkKdqApGPTt37nS/Q1Lp3bdvn7ug6bfxgjhlQsrMlKkEBq+p/Q1jle5I1xvpfhVl1DofdWFOydq1a93FUhcEzwcffODWvXTp0hPmVwaqC6Qugt6FQ38VfCst3kVCGb4ywn///TfoOB4/fnxEwesdd9zh++qrr9xL6dENgC4Kofsj0vToBkHL1Y1iIF2odNN49913+2881q1b5/adLpYKCgKD15YtW/qPf22PjicFazp3A397ndPKL7UdqaXzXOfZggULgoJXHcvdu3d355z88ssv7kLds2fPoO9fe+21bl/pYuVRPqV8J9LgVftZ26ubEPn999/dNgbedAUGVwoeAylNutCF88orr5yQn6kwRMGLAkSPflMtQ+frnj173DQvPeEkt05vWbr5VsDo3Vhqn+pGL5r0JWXJkiXu+zq2RMegfqfQY08U5BUvXtwFch7NP3LkyFQFrx4d87qJDqd169bumFT6PLqR1+/qrS81wavObd0YKd89cOBA2O/pBkfpV1Dl0fVK+ZN+E+XRohtFTVOgGkjnj24mZ8yY4Z+mwF7BZWjwqsBR57KCPo+CYf3GOicC16/9EHhzqXNN39VNno43b3uUv+hcfP7551MMXhWkK026TnqUf4waNcrdUKY2eFX6NF3B6YYNG9zN1OWXX+4/F3TtuPXWW925roLEwOBV15TZs2e7abqB0w1uuOB12bJl7mZG+90LsLdt2+aub8oDvfxTx4xuwHr06OHPE9evX++75JJLEiN41UYG3j17FBhEmikmavB67733ugupMnVdCJQZ6cTVtk+YMMHNo7+hdBFXyVNg4KMSpHBiEbwOGDDAnezJnSyRzBMuGIz0e6kJXhs2bBg0nwIIZWI333yzf5pKAzWv/qYmvd4NxnfffRc0n+4oNT0weE3tbxirdEe63uT2qzJyL9DTNqvEQb+Tjt1wFMgpY9OFS99R6ZmWEUnwqqCwWLFiJ5REKLjRd9544w33XhcMXQRSywteFWh5pTgqZVAGreWFZvCRpiep4FXbrt8ttIRUFxzN/+WXXwYFr6HfV36ofFFBZagnn3zSlaildL7o2NExqZIg/R6TJ0923wsssVLwqouHLiyBFIyppM2ji5Qutvfdd1/QfLrgKK+INJ9WqU3osafATaXOaQledcFVsKZAKpRK7rQs3TyIghu9V+lOJFIKXrWsH3/8MWi68jTtL53XqU1fUm6//XYX6AY+hVEQpv0fOE0BmZanUt6kxCp41fmu5SgwD6USR5VAphS86jzx8hndxOjphAK+0KckCmqU53rz6tzt16+f/3Ndr5QW3XwFUimxSjo9Om90bilAC6VCgcDgVX91Te7QocMJ86qQQen0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kAIAAABkOgYpAAAAwEmHQQoAAACQMBikAAAAAAmDQQoAAACQMBikAAAAACdng61IeEPGAgAAALEW8+C1dOnSsV4kAAAAkD7BKwAAABAXDbaqV6+ebgkBAAAAYhq8btq0yXr06GEFCxZMcp4nn3wyNYsEAAAA0id4veaaa6xWrVougE0KwSsAAADios7r7bffbqNGjUp2nsaNG6c1TQAAAEBY9PMKAACArNvPKwAAAJBeCF4BAACQMAheAQAAkDDiInjdv3+/HT58ONl5/v33X9u5c6f5fL4MSxcAAABOguB19uzZMVn5e++9Z3Xr1nVDyhYpUsT1VLBw4cKgeY4fP259+/Z1n1esWNHKlStnn3zySUzWDwAAgCwQvLZs2TLNKz527Jh99dVX9vbbb7tWZXv27LGzzz7bLrvsMtu1a5d/vueee87eeustmzNnjmuFdv/991vnzp1t9erVaU4DAAAAskDwevrpp9u6devStOIcOXLY2LFjXcCaLVs2y5Mnjw0aNMj++uuvoNLXV1991bp3727nnHOOZc+e3e6++26rUKGCjRw5Mk3rBwAAQBYJXh999FG76aabbNGiRXbgwAE7evRo0Cta69evd39LlSrl/v7555/2+++/23nnnRc03/nnn28LFiyIej0AAADIAsPDerp27er+NmzYMOzn0TSqUhCsUtVWrVq50ljZsWOH+1u8ePGgefVe1QiSosZfgQ3AVN0AAAAAWTR4nT59ekwToZ4EOnTo4ALYKVOm+KermoCEluYeOXLEVTtIypAhQ+yxxx6LaRoBAACQoMFrLBpshQaua9eute+//95fZUDKli3r/m7bti3oO9u3b/d/Fs6AAQPs3nvvDSp5LV++fMzSDAAAgATr51WlofPnz7cPPvjAP029BqSGSlA7duxoq1atcoGrusEKpHFt1VDrm2++CVrvtGnTrHnz5kkuV42/9N3AFwAAALJo8Lp582Zr0KCBNWvWzK699lr/9BtvvNEmT54c0TLUf2uXLl1s3rx5rtcBb7l6qfqA5+GHH7YxY8bYiBEjbPny5datWzc3/fbbb48m6QAAAEhg2XxRtK5SaalKM9WNVb58+fwNtH744QfXD2skgxjs3r3b6tSpE/azZ5991q655hr/+w8//NBefPFFV11A3xk8eLDVrFkz4vSq2kDhwoVdyTClsAAAAPEn0ngt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lSu7klePHumXKVMmmkUCCU0Batu2bRlhCwCAdBZV8NqpUyfr06ePjRkzxr1Xyau6AurRo4d16dIl1mkEEqYLt0j6KQYAABncYEt1+RSwlihRwv1VSawu2tWrV7dBgwalITkAAABAjEteVedVXVwtXbrUFi1a5ALYevXqWcOGDaNZHAAAAJC+/bxK3bp13QsAAACI22oDGpjg8ccfP2G6pukzAAAAIG6C17vuussNUhBK03r37h2LdAEAAACx6+d127ZtrqFWoL1791rZsmX9w73GC/p5BQAAiG+RxmtRlbxqwRpNK5SGi1VgCwAAAKSHqILXjh07Wvfu3W3JkiX+aYsXL3bT9BkAAAAQN8Hr4MGDrXTp0la/fn0rWLCge6m+a7ly5VwfsAAAAEBc9fM6depUW7hwoSt91RCx6jKLfl4BAAAQt/28KlglYAUAAEDcB6/Lli2zOXPm2K5du0747KGHHkprugAAAIDYBK8vvfSS9enTx6pWrWpFixY94XOCVwAAAMRN8Prss8/auHHjrFOnTrFPEQAAABDL3gY0GEGbNm2i+SoAAACQscFro0aNbN68edGvFQAAAMioagPNmjWzLl262D333GNVqlRxXWUF6tChQzSLBQAAAJKVzefz+SyVihQpkuzne/bssUQcKxcAAADxHa9FVfIab8EpAAAAsoao6rwCAAAACRW8rlq1ygYMGGCdO3f2Txs/frwdPHgwVmkDAAAA0h68Tps2zRo0aGArV650Aatn+fLl9sorr0SzSAAAACB9gteBAwfayJEj7fPPPw+aft1119mIESOiWSQAAACQPsHrihUrrH379u7/wG6yKlSoYBs3boxmkQAAAECKouptoFChQrZ161arXLlyUPC6YMECK1OmTDSLBOLSgQMHbM2aNRHPrzrfGzZssIoVK1q+fPki+k716tUtf/78aUglAABZR1TBa6dOnaxPnz42ZswY9/748eM2a9Ys69Gjhxu8ADhZKHCtX79+uq5j8eLFVq9evXRdBwAAWXqQgv3797sAdsqUKS5wVamRSqiuuOIKmzBhguXNm9fiCYMUIKNKXlevXm3XX3+9jR071mrUqBHRdyh5BQDA0neQggIFCtjkyZNt6dKltmjRIhfAquSoYcOG7HucVHRjFk2pqAJXSlMBAIi9qIJXT926dd0LAAAAiKvgdfjw4REv9Lbb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li1bWvXq1W3QoEGxTyUAAAAQbbWBAgUK2OTJk23p0qW2aNEiF8DqESx9vgIAACDugteCBQvavn37rG7duu4V7jMAAAAgLqoN7N+/P+z0I0eOuBcAAACQ6SWv6l4o3P+iqgPz58+n/0kAAADER/Dar1+/sP9Lrly5XN+Wr732WuxSBwAAAEQbvG7bts39rV27thuoAAAAAIj7Oq+tW7eOfUoAAACA9AheX3nlFfv333+j+SoAAACQscFro0aN7Pvvv49+rQAAAEBG9fN60UUXuWFg77jjDqtZs6blzp076PMOHTpEs1gAAAAg9sHr888/768+EA7BKwAAAOImeN2zZ0/sUwIAAACkR51XAAAAIGFKXuXw4cP20Ucf2erVq83n87m6rx07drQ8efLENoUAAABAWkpe165dazVq1LDbbrvNpk6dat988437X9P0GQAAABA3wevdd99tDRo0sC1bttiiRYts4cKF7n9N6927d+xTCQAAAERbbWDmzJn266+/WuHChf3T9P9LL71klStXZscCAAAgfkpec+XKZQcOHDhh+v79+91nAAAAQNwEr5dffrnddNNNtmbNGv80Ndy68cYb3WcAAABA3ASvqh6gElY10DrllFPcS70N5M2b11588cXYpxIAAACIts5riRIlbNq0aa6x1sqVKy1btmwueFWDLQAAcHI4duyYzZo1y7Zu3WqlS5e2Zs2aWY4cOTI7Wcjiou7nVRSsErACAHDymThxovXt29c2bNjgn1axYkV77rnnrH379pmaNmRtUY+w9f3331vbtm2tWrVq7tWuXTubMWNGbFMHAAAyJXDt0KGD1a5d21599VUbPXq0+6v3mq7PgYQqeR05cqTdeeeddvXVV1vPnj3dNPX1etFFF9nrr79u3bt3j3U6gZgpVTCb5duz1uyPxBodWWlW2gEgvasKqMS1fv36tmLFCps0aVJQyaum9+vXzxVgUYUACRO8Pv744+4u7IYbbgia/s4779hDDz1E8Iq41rN+bqsxs6fZTEsoNf6XdgBIT6rjqqoCv//+u7Vp08Y++OADV+KqQHbw4MEumNWw8JqvZcuW/BhIjOD177//dndcoVR1oFevXrFIF5BuRiz+1zo/8rbVqF49ofby6jVrbMRz19p/MjshAE5qGjFTWrdubZ9++qllz/5/T6maNGni3iug/eqrr/zzAQkR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5z6fL9r0AAAAALENXmfNmhX0Xj0MrFu3ztV/vffee6NZJAAAAJA+wev5559/wrTmzZtb9erVbcCAAdanT59oFgsAAACkb1dZgc455xxbtmxZLBcJAABSoKefe/fuTZf9tHr16qC/sVaoUCGrWrVquiwbJ6eYBq+jR4+2kiVLxnKRAAAghcC1WrVq6b6Prr/++nRb9tq1awlgkb7Ba8WKFU+YtmfPHjt48KCNGTMmmkUCAIAoeCWuY8eOtRo1asR8H+ravmHDBnftT6nBdmqpNFdBcXqVGuPkFFXw+tBDD50wrWjRotaoUSMrX758LNIFAABSQYFrvXr10mWfnXfeefwWSOzgtXv37rFPCQAAAJCedV73799vu3fvPmF6uXLl0rJYAAAAIHbB6/Lly61r165J9izAIAUAAACIm+C1R48erlXga6+95uq6AgAAAHEbvK5YscKmTp1qRYoUiX2KAAAAgCRktyicfvrp9s8//0TzVQAAACBjS1779u1rd955p40cOdJKly4d/dqBOHfgwAFbs2ZNuo5Eo2GV8+fPH1X6AADIaqIKXnv37u16GihTpoy76GbLli3o83379sUqfUCmUuBav379dB2JZvHixenWNyOArKFUwWyWb89asz+ieqCaaZRmpR1I9+BVo3gAWYFKRRVcpudINFoHAKRFz/q5rcbMnmYzE2s/1vhf2oF0D17btWsXzdeAhKMnC6ktFWUkGgAZbcTif63zI29bjQS7GV69Zo2NeO5a+09mJwQJhUEKAABIcNv2+exgkWpmZc6xRHJw23GXdiA1GKQAAAAACYNBCgAAAJAwGKQAAAAAJ3fw6g1SwAhbAABkfn/UsmTJknRZfjS9qEQqNX1iAx4GKQAAIIF5A6n06NHDElWhQoUyOwlIIAkxSMGOHTts3Lhxtn37dqtTp4516NDBcuTIEdN1AACQiLzuK9NrtD6VjmrgFfXxXqOGemaNfeBatWrVmC8XJ6+4H6Tgl19+cf1m1qpVyxo1amQDBgyw0aNH25dffkkACwDI8ooXL27du3dP9/2gwJXRABEP4n6Qgvvvv9+qVKli33zzjWXPnt169uxp1apVcyWx1113XYalAwAAAJkvZoMgHz161D7//HNr27atxXKZkydPdkGqAldRhfEWLVrYp59+GrP1AAAAIAuMsCXr16+3N99808aMGWO7du2yCy+8MDYpM7Pff//dDh06ZJUrVw6arvdz585N8nuHDx92L496RgAAAP/XO4HXyCs1PQKkpmeA9Kp/C0QdvKrbjI8//tgFrbNmzbJjx47ZRx99ZK1bt7aCBQvGvPuPU045JWh64cKFXYOxpAwZMsQee+yxmKUDAICThQLX+vXrp/p7arQVqcWLF1M/FvERvC5dutRGjRpl77//vhUoUMC6devmSlzV76t6AIg1LxDes2dP0HS9T65bDTXquvfee4NKXsuXLx/z9AEAkGhUKqrgMj37edU6gLgIXtXKsEGDBi5gveKKK9K9tX+FChVckPzzzz+7Ut3Au8bkuuvIkyePewEAgGB6nJ/aXgPU6w+QkA22mjZt6kbwGD58uGucpQZV6UnBcfv27V2w7NVhXbFihc2ePds6duyYrusGAABAggevc+bMsZ9++smVeqrLKj2KHzhwYPqlzsyefvpp99i/cePGrprCBRdcYNdcc41dddVV6bpeAAAAxJ9sPp/PF80X//33X/vss89coy31wXruuee6/l/1Cu0dIBYNtyZNmuQfYatly5ap+r6CXzXy+vvvv09o/AUAAIDMF2m8FnXwGmjjxo321ltvuZe6t4rBImOK4BUAACC+ZWjw6jl+/Lgrhb300kstnhC8AgAAxLdI47WYjbDlFpY9e9wFrgAAADh5xDR4BQAAANITwSsAAAASBsErAAAATs4RtkLt37/fdu/efcL0cuXKpWWxAAAAQOyC1+XLl1vXrl1t2bJlYT+Pt66yAAAAkIWD1x49eljVqlXttddes6JFi8Y+VQAAAECsgtcVK1bY1KlTrUiRItF8HQAAAMi44PX00093HckmSvDqVWNQmgEAABB/vDgtpeqnUQWvffv2tTvvvNNGjhxppUuXtni3d+9e97d8+fKZnRQAAACkELdppK2YDg9bsGBB19OA5M+f37Jlyxb0+b59+yyeaNjaP/74wwoVKnRCWoFY3zXqJmnTpk3JDm0HAImCfA0ZRSGpAtcyZcq4UVtjWvI6duxYSyTaAXTfhYykwJXgFcDJhHwNGSG5Etc0Ba/t2rWL5msAAABAmjDCFgAAAE7+Eba+/vprmzBhgm3cuNGOHj0a9Nm3334bi7QBCSdPnjz26KOPur8AcDIgX8NJUfI6atQo69ixo6tLqv5ea9eubQcOHLBp06ZZ2bJlY59KIIEy+UGDBhG8AjhpkK8h3kTV20DNmjXthRdesEsvvdS13vcWoRKnlStXuhJZAAAAIC6C19y5c7uuM/LmzevuyHbt2mUFChRwfytVqmR79uyJeUIBAACAqKoNHDlyxAWuoi6ofvrpJ/e/glf1qQpkNB178+bNy5B17dixwxYsWJDm5agv2PXr18ckTVkR+w+IjeXLl9vmzZszZHcuXbrU9bueVnPnzrVDhw7FJE1Z0dwE339p7m2gS5cuds0111ifPn2sTZs2dtlll8UmZUizFStW2OzZs91r4cKF9ueff560e3XmzJnWunXrDFmX6nn/5z//SdMy1MhR1W5++eWXEwJjZe7JPb04ePCgLV68ONnA99ixYzZ//nxbvXp1sunYunWrW9/hw4cjTntGpnH37t22ZMmSsBfWv//+25o1a+b+IvPpd/Dymx9++MHWrl1r//77b8yWr+NAx2u8iLf0pMWtt96aYf2333DDDTZ+/Pg0LePjjz92o3wGNoxVfrJq1SqX54Q2Ig/0+++/26JFi/wjb4aKZDmRriva78UijT6fz3799VdXuOgNKhXo9ddftyFDhljC8kXhp59+8v9/5MgR31NPPeVr27at7/777/f9/fff0SwS6eDCCy/0lShRwnfeeef5GjRo4MuXL5+vdevWvt27d590+/uTTz7xFS5cOEPWNXXqVN9//vOfNC1j+PDhvsaNG/vfz5s3z9e8eXP3e51zzjnut+rWrZvv33//DfreRx995LazatWqvlNOOcV3/vnn+/766y//5wcOHPA99thjvgoVKvgKFSrkzstwduzY4bv88svdPDo2Tj/9dN/EiROTTXNGplHLvOWWW3z58+d36ypatKivXbt27ruB2rdv73vwwQeTTTcyxjfffKMqaL6GDRu6PKd8+fLuWBk/fnxMln/mmWf6Xn75ZV+8iLf0pIXyoiFDhmTIum644YY0HRPHjh3zVa5c2eX53vtBgwb5SpYs6atRo4bLV/SaMmVK0Pf279/va9OmjctTqlev7v6OGDEiaLkpLSfSdYVLc0al0cuDlf/qGNV8BQsW9D3++OO+QD///LPLw//8809fIooqeEXiBK/XXXed//3vv//uK168uO/OO+90wcGsWbPcyaLAYv78+b5t27b559X0RYsW+X799Vff8ePHU1zX1q1b3fyB/x88eDBonj179rh16qXP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"/>
 </div>
 </div>
 </div>
@@ -9792,7 +10010,7 @@ Largest increases:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Figure 1. Distribution of jurisdiction-level mean annual reported pertussis incidence rates for the pre-pandemic period (2016–2019) and later period (2022–2023). Each box represents the distribution of mean rates across the 51 jurisdictions. The later period shows a lower median and less variability in reported incidence.</p>
+<p>Figure 1. Distribution of jurisdiction-level mean annual reported pertussis incidence rates for the pre-pandemic period (2016–2019) and post-acute-pandemic period (2022–2023). Each box represents the distribution of mean rates across the 51 jurisdictions. The post-acute-pandemic period shows a lower median and less variability in reported incidence.</p>
 </div>
 </div>
 </div>
@@ -9801,7 +10019,7 @@ Largest increases:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [79]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">differences</span> <span class="o">=</span> <span class="n">comparison</span><span class="p">[</span><span class="s2">"Difference"</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
@@ -9843,7 +10061,7 @@ Largest increases:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Figure 2. Change in Pertussis Incidence by Jurisdiction. Bars show the difference between each jurisdiction's 2022 - 2023 and 2016 - 2019 average annual incidemce rates. Negative values indicate decreases; positive values indicate increases. Fifty jurisdictions had lower average rates in the later period, while one had a slight increase.</p>
+<p>Figure 2. Change in Pertussis Incidence by Jurisdiction. Bars show the difference between each jurisdiction's 2022 - 2023 and 2016 - 2019 average annual incidence rates. Negative values indicate decreases; positive values indicate increases. Fifty jurisdictions had lower average rates in the post-acute-pandemic  period, while one had a slight increase.</p>
 </div>
 </div>
 </div>
@@ -9852,7 +10070,7 @@ Largest increases:
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [80]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -9895,7 +10113,59 @@ Largest increases:
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Figure 3. Distribution of Changes in Pertussis Incidence. The histogram displays jurisdiction-level differences in average incidence rates, calculated as later-period average minus the pre-pandemic average. Most differences are negative, with a long tail toward larger decreases. Reference lines indicate zero change and the mean difference.</p>
+<p>Figure 3. Distribution of Changes in Pertussis Incidence. The histogram displays jurisdiction-level differences in average incidence rates, calculated as post-acute-pandemic average minus the pre-pandemic average. Most differences are negative, with a long tail toward larger decreases. Reference lines indicate zero change and the mean difference.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f732124b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="5.-Results-and-Interpretation">5. Results and Interpretation<a class="anchor-link" href="#5.-Results-and-Interpretation">¶</a></h2><p>The analysis found a substantial difference in reported pertussis incidence between the pre-pandemic period (2016-2019) and the post-acute-pandemic period (2022-2023). Across the 51 jurisdictions, the mean of the jurisdiction-level average annual incidence rates decreased from 6.680 to 1.457 cases per 100,000 population. This represents a 78.2% decrease in the unweighted mean of the jurisdiction-level rates.</p>
+<p>The mean paired difference was -5.223 cases per 100,000 population, indicating that reported incidence was lower during the post-acute-pandemic period. Fifty of the 51 jurisdictions experienced a decrease, while Nevada was the only jurisdiction with an increase.</p>
+<p>The paired-samples t-test found a statistically significant difference between the two periods (t = -8.141, df = 50, p &lt; 0.001). The 95% confidence interval for the mean paired differences ranged from -6.512 to -3.935 cases per 100,000 population. The negative interval indicates that the decrease was not limited to the observed sample of jurisdictions.</p>
+<p>The supplementary Wilcoxon signed-rank and exact sign tests also found statistically significant differences (p &lt; 0.001 for both tests). These results provide additional support for the conclusion that reported pertussis incidence was generally lower during the post-acute-pandemic period.</p>
+<h3 id="5.1-Interpretation-of-the-Visualizations">5.1 Interpretation of the Visualizations<a class="anchor-link" href="#5.1-Interpretation-of-the-Visualizations">¶</a></h3><p>The three visualizations provide complementary perspectives on the observed changes.</p>
+<p>Figure 1 compares the distribution of jurisdiction-level mean annual incidence rates for the two periods. The lower median and narrower distribution in the post-acute-pandemic period indicate that reported incidence decreased across most jurisdictions and that the jurisdiction-level rates were less variable during that period.</p>
+<p>Figure 2 displays the difference between the two period averages for each jurisdiction. The predominance of negative bars illustrates that 50 jurisdictions experienced decreases. Nevada's positive bar indicates the only jurisdiction to increase.</p>
+<p>Figure 3 shows the distribution of the paired differences. Most observations fall below zero, confirming that decreases were much more common than increases. The distribution also has a tail extending toward larger negative differences, indicating that some jurisdictions experienced substantially greater decreases than others.</p>
+<p>Taken together, the numerical results and visualizations show a consistent pattern: reported pertussis incidence was substantially lower across U.S. jurisdictions during 2022-2023 than during 2016-2019.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0a64d0db">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="6.-Limitations-and-Considerations">6. Limitations and Considerations<a class="anchor-link" href="#6.-Limitations-and-Considerations">¶</a></h2><p>Several limitations should be considered when interpreting the results of this analysis.</p>
+<h3 id="6.1-Changes-in-Pertussis-Surveillance-and-Case-Definitions">6.1 Changes in Pertussis Surveillance and Case Definitions<a class="anchor-link" href="#6.1-Changes-in-Pertussis-Surveillance-and-Case-Definitions">¶</a></h3><p>The CDC pertussis surveillance case definition changed effective January 1, 2020. Because the pre-pandemic period (2016-2019) and post-acute-pandemic period (2022-2023) fall on opposite sides of this change, differences in reported incidence may partly reflect changes in case classification and surveillance practices rather than changes in the underlying occurrence of pertussis alone.</p>
+<p>The analysis uses reported surveillance data and therefore measures reported pertussis incidence, not the total number of infections in each jurisdiction. Cases that were not diagnosed, tested, or reported are not represented in the dataset.</p>
+<h3 id="6.2-Exclusion-of-2020-and-2021">6.2 Exclusion of 2020 and 2021<a class="anchor-link" href="#6.2-Exclusion-of-2020-and-2021">¶</a></h3><p>The years 2020 and 2021 were excluded from the period averages because they represent the acute phase of the COVID-19 pandemic. This approach separates the pre-pandemic baseline from the post-acute-pandemic comparison period. However, excluding these years also means that the analysis does not describe the full trajectory of reported pertussis incidence during the pandemic or the timing of any changes.</p>
+<h3 id="6.3-Jurisdiction-Level-Comparisons">6.3 Jurisdiction-Level Comparisons<a class="anchor-link" href="#6.3-Jurisdiction-Level-Comparisons">¶</a></h3><p>Each jurisdiction contributes equally to the overall comparison, regardless of population size. The reported period means are therefore unweighted averages of jurisdiction-level incidence rates rather than population-weighted national incidence rates. This approach supports comparisons across jurisdictions but does not represent the average incidence experienced by an individual across the entire U.S. population.</p>
+<p>Combining New York City and New York State excluding New York City was necessary to produce one observation for New York, consistent with the study's definition of 51 jurisdictions. Although the combined rates were recalculated using summed case counts and population denominators, this aggregation removes the ability to examine New York City separately.</p>
+<h3 id="6.4-Statistical-and-Causal-Limitations">6.4 Statistical and Causal Limitations<a class="anchor-link" href="#6.4-Statistical-and-Causal-Limitations">¶</a></h3><p>The Shapiro-Wilk test indicated that the paired differences departed from a normal distribution. Although the paired-samples t-test was retained as the primary analysis, its results were interpreted alongside the Wilcoxon signed-rank test and exact sign test. The Wilcoxon signed-rank test also relies on a symmetry assumption for its usual location-shift interpretation, and that assumption was not formally evaluated.</p>
+<p>Finally, this retrospective observational analysis identifies differences in reported incidence between two periods but cannot establish that the COVID-19 pandemic caused those differences. Other changes in disease transmission, healthcare utilization, diagnostic testing, reporting practices, and population behavior may also have contributed to the observed pattern.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c71c7305">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="7.-Conclusion">7. Conclusion<a class="anchor-link" href="#7.-Conclusion">¶</a></h2><p>This analysis evaluated whether reported pertussis incidence differed between the pre-pandemic period (2016-2019) and the post-acute-pandemic period (2022-2023) across the 50 U.S. states and the District of Columbia.</p>
+<p>The results provide strong statistical evidence of a difference between the two periods. The mean of the jurisdiction-level average annual incidence rates decreased from 6.680 to 1.457 cases per 100,000 population, representing a 78.2% decrease in the unweighted mean. The mean paired difference was −5.223 cases per 100,000 population, and 50 of the 51 jurisdictions experienced a decrease.</p>
+<p>The paired-samples t-test identified a statistically significant difference, and the supplementary Wilcoxon signed-rank and exact sign tests supported the same conclusion. The consistency of these findings across the jurisdictions indicates that the decrease was widespread rather than limited to a small number of locations.</p>
+<p>The analysis therefore supports the conclusion that reported pertussis incidence was significantly lower during the post-acute-pandemic period than during the pre-pandemic period. However, changes in the pertussis case definition, surveillance and reporting practices, and other factors limit direct comparisons between the periods. The observational design also does not establish that the COVID-19 pandemic caused the observed decrease.</p>
+<p>Overall, this project demonstrates how publicly available disease surveillance data, data preparation techniques, descriptive analysis, inferential statistical testing, and visualization can be combined to investigate changes in reported disease incidence across U.S. jurisdictions.</p>
 </div>
 </div>
 </div>
