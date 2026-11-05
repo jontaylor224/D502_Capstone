@@ -14,14 +14,16 @@ This is a quantitative, retrospective observational analysis. It compares report
 
 ## Repository Contents
 
-The repository contains the materials needed to inspect and reproduce the analysis.
+All project files are located in the repository's root directory, except for the visualization images.
 
 | File or directory | Description |
 |---|---|
-| `analysis.ipynb` | Jupyter Notebook containing the data-loading, cleaning, validation, statistical analysis, and visualization code. |
-| `NNDSS_Annual_Summary_Data_2016-2023_Pertussis.csv` | Original CDC dataset |
-| `cleaned_pertussis_data.csv` | Cleaned dataset for analysis |
-| `/images` | Directory of data visualization images for export if needed |
+| `analysis.ipynb` | Completed Jupyter Notebook containing the data-loading, cleaning, validation, statistical analysis, and visualization code, including saved outputs. |
+| `NNDSS_Annual_Summary_Data_2016-2023_Pertussis.csv` | Original CDC NNDSS annual pertussis dataset downloaded from CDC WONDER. |
+| `cleaned_pertussis_data.csv` | Prepared dataset containing 408 observations representing 51 jurisdictions across eight years. |
+| `analysis.html` | HTML export of the Jupyter Notebook for viewing the analysis without opening Jupyter. |
+| `images/` | Directory containing exported data visualizations. |
+| `README.md` | Project overview, data documentation, methodology, findings, and reproduction instructions. |
 
 ## Data Source
 
@@ -71,17 +73,21 @@ The analysis includes:
 
 ### Prerequisites
 
+The following software and Python libraries are required:
+
 - Python 3
-- Jupyter Notebook or JupyterLab
-- The project repository cloned or downloaded to your computer
-- The original CDC data file and prepared analysis data, as included in the repository
+- Jupyter Notebook
+- pandas
+- NumPy
+- SciPy
+- Matplotlib
 
 ### 1. Clone the repository
 
 Open a terminal and run:
 
 ```bash
-git clone https://github.com/jontaylor224/D502_Capstone
+git clone https://github.com/jontaylor224/D502_Capstone.git
 ```
 
 Change to the repository directory:
@@ -90,15 +96,24 @@ Change to the repository directory:
 cd D502_Capstone
 ```
 
+**Important:** Run the following commands from the repository's root directory. The notebook uses relative file paths to locate the original CDC dataset and save the cleaned dataset.
+
 ### 2. Create and activate a virtual environment
 
-Creating a separate environment helps keep the project's Python dependencies isolated.
+Creating a virtual environment keeps the project's Python dependencies isolated.
 
-**Windows:**
+**Windows PowerShell:**
 
-```bash
+```powershell
 python -m venv .venv
-.venv\Scripts\activate
+.\.venv\Scripts\Activate.ps1
+```
+
+**Windows Command Prompt:**
+
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
 ```
 
 **Linux or macOS:**
@@ -108,39 +123,63 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3. Install dependencies
+### 3. Install the required packages
 
-Install the dependencies used by the notebook. At a minimum, the analysis uses the following Python packages:
+With the virtual environment activated, run:
 
 ```bash
+python -m pip install --upgrade pip
 python -m pip install jupyter pandas numpy scipy matplotlib
 ```
 
-If additional packages are imported by the notebook, install those as well.
+### 4. Launch Jupyter Notebook
 
-### 4. Open the Jupyter Notebook
-
-From the repository directory, run:
+From the repository's root directory, run:
 
 ```bash
 jupyter notebook
 ```
 
-Open `analysis(7).ipynb` in the Jupyter interface.
+Open `analysis.ipynb` in the Jupyter interface.
 
-### 5. Run the analysis
+Alternatively, JupyterLab can be installed and launched using:
 
-Execute the notebook cells in order, starting with the first cell.
+```bash
+python -m pip install jupyterlab
+jupyter lab
+```
+
+### 5. Execute the notebook
+
+Run the notebook cells in sequential order, starting with the first cell.
 
 The notebook performs the following operations:
 
-1. Loads and inspects the source data.
-2. Cleans and prepares the jurisdiction-level dataset.
-3. Combines the New York reporting areas.
+1. Loads and inspects the original CDC dataset.
+2. Removes documentation rows and prepares the jurisdiction-level records.
+3. Combines the New York City and New York State excluding New York City reporting areas.
 4. Handles missing incidence rates associated with zero reported cases.
-5. Validates and exports the prepared dataset.
-6. Calculates and compares incidence rates for the two study periods.
-7. Performs statistical tests and generates visualizations.
+5. Validates the prepared dataset and saves it as `cleaned_pertussis_data.csv`.
+6. Calculates jurisdiction-level mean incidence rates for the pre-pandemic and post-acute-pandemic periods.
+7. Performs descriptive and inferential statistical analyses.
+8. Generates visualizations of the results.
+
+### 6. Verify the results
+
+After executing all notebook cells, verify that the following results are produced:
+
+- Prepared dataset shape: 408 rows and 9 columns.
+- Number of jurisdictions compared: 51.
+- Pre-pandemic mean incidence rate: 6.680 per 100,000.
+- Post-acute-pandemic mean incidence rate: 1.457 per 100,000.
+- Mean paired difference: −5.223 per 100,000.
+- Paired t-test: t(50) = −8.141.
+- Paired t-test p-value: 1.00738 × 10⁻¹⁰.
+- Cohen's d_z: −1.140.
+
+The notebook also performs the Wilcoxon signed-rank test and exact sign test and generates the supporting visualizations.
+
+The execution of the notebook will create or overwrite `cleaned_pertussis_data.csv` in the repository's root directory.
 
 **Important:** The notebook's data-loading paths must point to the locations of the data files within the cloned repository. If the files are moved or renamed, update the corresponding paths before running the notebook.
 
