@@ -87,7 +87,7 @@ git clone https://github.com/jontaylor224/D502_Capstone
 Change to the repository directory:
 
 ```bash
-cd [REPOSITORY-DIRECTORY]
+cd D502_Capstone
 ```
 
 ### 2. Create and activate a virtual environment
